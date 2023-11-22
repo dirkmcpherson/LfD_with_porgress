@@ -1,0 +1,2090 @@
+
+
+---Map.msg---
+
+
+MapHandle handle
+string name
+MapElement[] elements
+
+---GripperCommand.msg---
+
+
+uint32 mode
+Gripper gripper
+uint32 duration
+
+---MapGroupHandle.msg---
+
+
+uint32 identifier
+uint32 permission
+
+---ControllerInputType.msg---
+
+
+uint32 UNSPECIFIED_CONTROLLER_INPUT_TYPE = 0
+
+uint32 ANALOG = 1
+
+uint32 DIGITAL = 2
+
+
+---ConfigurationChangeNotificationList.msg---
+
+
+ConfigurationChangeNotification[] notifications
+
+---Base_ControlModeNotification.msg---
+
+
+uint32 control_mode
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+
+---WrenchMode.msg---
+
+
+uint32 UNSPECIFIED_WRENCH_MODE = 0
+
+uint32 WRENCH_RESTRICTED = 1
+
+uint32 WRENCH_NORMAL = 2
+
+
+---PasswordChange.msg---
+
+
+UserProfileHandle handle
+string old_password
+string new_password
+
+---SequenceTasks.msg---
+
+
+SequenceTask[] sequence_tasks
+
+---KinematicTrajectoryConstraints.msg---
+
+
+float32[] angular_velocities
+float32 linear_velocity
+float32 angular_velocity
+
+---TwistLimitation.msg---
+
+
+float32 linear
+float32 angular
+
+---AngularWaypoint.msg---
+
+
+float32[] angles
+float32[] maximum_velocities
+float32 duration
+
+---Base_ControlMode.msg---
+
+
+uint32 UNSPECIFIED_CONTROL_MODE = 0
+
+uint32 ANGULAR_JOYSTICK = 1
+
+uint32 CARTESIAN_JOYSTICK = 2
+
+uint32 ANGULAR_TRAJECTORY = 4
+
+uint32 CARTESIAN_TRAJECTORY = 5
+
+uint32 CARTESIAN_ADMITTANCE = 6
+
+uint32 JOINT_ADMITTANCE = 7
+
+uint32 NULL_SPACE_ADMITTANCE = 8
+
+uint32 FORCE_CONTROL = 10
+
+uint32 FORCE_CONTROL_MOTION_RESTRICTED = 11
+
+uint32 IDLE = 13
+
+
+---ServoingModeNotification.msg---
+
+
+uint32 servoing_mode
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+
+---Xbox360AnalogInputIdentifier.msg---
+
+
+uint32 UNSPECIFIED_XBOX360_ANALOG = 0
+
+uint32 XBOX360_THUMB_LEFT_X = 1
+
+uint32 XBOX360_THUMB_LEFT_Y = 2
+
+uint32 XBOX360_THUMB_RIGHT_X = 3
+
+uint32 XBOX360_THUMB_RIGHT_Y = 4
+
+uint32 XBOX360_TRIGGER_LEFT = 5
+
+uint32 XBOX360_TRIGGER_RIGHT = 6
+
+
+---MappingList.msg---
+
+
+Mapping[] mappings
+
+---RFConfiguration.msg---
+
+
+WifiEnableState wifi_enable_state
+BluetoothEnableState bluetooth_enable_state
+
+---LimitationType.msg---
+
+
+uint32 UNSPECIFIED_LIMITATION = 0
+
+uint32 FORCE_LIMITATION = 1
+
+uint32 ACCELERATION_LIMITATION = 2
+
+uint32 VELOCITY_LIMITATION = 3
+
+uint32 TORQUE_LIMITATION = 4
+
+
+---Wrench.msg---
+
+
+float32 force_x
+float32 force_y
+float32 force_z
+float32 torque_x
+float32 torque_y
+float32 torque_z
+
+---ServoingModeNotificationList.msg---
+
+
+ServoingModeNotification[] notifications
+
+---SequenceTasksRange.msg---
+
+
+uint32 first_task_index
+uint32 second_task_index
+
+---Query.msg---
+
+
+Timestamp start_timestamp
+Timestamp end_timestamp
+string username
+
+---ControllerElementState.msg---
+
+
+ControllerElementHandle handle
+uint32 event_type
+float32 axis_value
+
+---MappingHandle.msg---
+
+
+uint32 identifier
+uint32 permission
+
+---ControllerEventType.msg---
+
+
+uint32 UNSPECIFIED_CONTROLLER_EVENT = 0
+
+uint32 CONTROLLER_DISCONNECTED = 1
+
+uint32 CONTROLLER_CONNECTED = 2
+
+
+---Action.msg---
+
+
+ActionHandle handle
+string name
+string application_data
+Action_action_parameters oneof_action_parameters
+
+---ShapeType.msg---
+
+
+uint32 UNSPECIFIED_SHAPE = 0
+
+uint32 CYLINDER = 1
+
+uint32 SPHERE = 2
+
+uint32 RECTANGULAR_PRISM = 3
+
+
+---JointLimitation.msg---
+
+
+uint32 joint_identifier
+uint32 type
+float32 value
+
+---AdmittanceMode.msg---
+
+
+uint32 UNSPECIFIED_ADMITTANCE_MODE = 0
+
+uint32 CARTESIAN = 1
+
+uint32 JOINT = 2
+
+uint32 NULL_SPACE = 3
+
+uint32 DISABLED = 4
+
+
+---Base_CapSenseConfig.msg---
+
+
+uint32 identifier
+uint32 mode
+float32 threshold_a
+float32 threshold_b
+float32 sensitivity_a
+float32 sensitivity_b
+
+---ProtectionZoneList.msg---
+
+
+ProtectionZone[] protection_zones
+
+---FactoryNotification.msg---
+
+
+uint32 event
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+
+---Waypoint_type_of_waypoint.msg---
+
+
+AngularWaypoint[] angular_waypoint
+CartesianWaypoint[] cartesian_waypoint
+
+---RequestedActionType.msg---
+
+
+uint32 action_type
+
+---FactoryEvent.msg---
+
+
+uint32 UNSPECIFIED_FACTORY_EVENT = 0
+
+uint32 FACTORY_DEFAULT_RESTORED = 1
+
+uint32 NETWORK_FACTORY_DEFAULT_RESTORED = 2
+
+
+---Twist.msg---
+
+
+float32 linear_x
+float32 linear_y
+float32 linear_z
+float32 angular_x
+float32 angular_y
+float32 angular_z
+
+---ConstrainedPose.msg---
+
+
+Pose target_pose
+CartesianTrajectoryConstraint constraint
+
+---CartesianTrajectoryConstraint.msg---
+
+
+CartesianTrajectoryConstraint_type oneof_type
+
+---OperatingModeNotificationList.msg---
+
+
+OperatingModeNotification[] notifications
+
+---CartesianLimitationList.msg---
+
+
+CartesianLimitation[] limitations
+
+---ControllerState.msg---
+
+
+ControllerHandle handle
+uint32 event_type
+
+---CartesianWaypoint.msg---
+
+
+Pose pose
+uint32 reference_frame
+float32 maximum_linear_velocity
+float32 maximum_angular_velocity
+float32 blending_radius
+
+---SoundType.msg---
+
+
+uint32 UNSPECIFIED_SOUND_TYPE = 0
+
+uint32 BIP_SERIES = 1
+
+uint32 SINGLE_BIP = 2
+
+
+---Base_GpioConfiguration.msg---
+
+
+uint32 port_number
+GpioPinConfiguration[] pin_configurations
+
+---ControllerConfigurationMode.msg---
+
+
+bool enable
+
+---FirmwareBundleVersions.msg---
+
+
+string main_bundle_version
+FirmwareComponentVersion[] components_versions
+
+---CartesianLimitation.msg---
+
+
+uint32 type
+float32 translation
+float32 orientation
+
+---JointTrajectoryConstraintType.msg---
+
+
+uint32 UNSPECIFIED_JOINT_CONSTRAINT = 0
+
+uint32 JOINT_CONSTRAINT_DURATION = 1
+
+uint32 JOINT_CONSTRAINT_SPEED = 2
+
+
+---JointSpeed.msg---
+
+
+uint32 joint_identifier
+float32 value
+uint32 duration
+
+---Base_RotationMatrixRow.msg---
+
+
+float32 column1
+float32 column2
+float32 column3
+
+---JointAngles.msg---
+
+
+JointAngle[] joint_angles
+
+---MapGroup.msg---
+
+
+MapGroupHandle group_handle
+string name
+MappingHandle related_mapping_handle
+MapGroupHandle parent_group_handle
+MapGroupHandle[] children_map_group_handles
+MapHandle[] map_handles
+string application_data
+
+---ActionExecutionState.msg---
+
+
+uint32 action_event
+ActionHandle handle
+
+---WaypointValidationReport.msg---
+
+
+TrajectoryErrorReport trajectory_error_report
+WaypointList optimal_waypoint_list
+
+---ServoingMode.msg---
+
+
+uint32 UNSPECIFIED_SERVOING_MODE = 0
+
+uint32 SINGLE_LEVEL_SERVOING = 2
+
+uint32 LOW_LEVEL_SERVOING = 3
+
+uint32 BYPASS_SERVOING = 4
+
+
+---EventIdSequenceInfoNotification.msg---
+
+
+uint32 UNSPECIFIED_SEQUENCE_EVENT = 0
+
+uint32 SEQUENCE_COMPLETED = 1
+
+uint32 SEQUENCE_ABORTED = 2
+
+uint32 SEQUENCE_PAUSED = 3
+
+uint32 SEQUENCE_TASK_STARTED = 4
+
+uint32 SEQUENCE_TASK_COMPLETED = 5
+
+uint32 SEQUENCE_STARTED = 6
+
+
+---ChangeTwist.msg---
+
+
+float32 linear
+float32 angular
+
+---MappingInfoNotificationList.msg---
+
+
+MappingInfoNotification[] notifications
+
+---WrenchLimitation.msg---
+
+
+float32 force
+float32 torque
+
+---MapHandle.msg---
+
+
+uint32 identifier
+uint32 permission
+
+---TransformationMatrix.msg---
+
+
+TransformationRow r0
+TransformationRow r1
+TransformationRow r2
+TransformationRow r3
+
+---ControllerElementEventType.msg---
+
+
+uint32 UNSPECIFIED_CONTROLLER_ELEMENT_EVENT = 0
+
+uint32 AXIS_MOVED = 1
+
+uint32 BUTTON_DOWN = 2
+
+uint32 BUTTON_UP = 3
+
+uint32 BUTTON_CLICK = 4
+
+
+---IKData.msg---
+
+
+Pose cartesian_pose
+JointAngles guess
+
+---FullIPv4Configuration.msg---
+
+
+NetworkHandle handle
+IPv4Configuration ipv4_configuration
+
+---SafetyNotificationList.msg---
+
+
+SafetyNotification[] notifications
+
+---UserList.msg---
+
+
+UserProfileHandle[] user_handles
+
+---Base_SafetyIdentifier.msg---
+
+
+uint32 UNSPECIFIED_BASE_SAFETY_IDENTIFIER = 0
+
+uint32 FIRMWARE_UPDATE_FAILURE = 1
+
+uint32 EXTERNAL_COMMUNICATION_ERROR = 2
+
+uint32 MAXIMUM_AMBIENT_TEMPERATURE = 4
+
+uint32 MAXIMUM_CORE_TEMPERATURE = 8
+
+uint32 JOINT_FAULT = 16
+
+uint32 CYCLIC_DATA_JITTER = 32
+
+uint32 REACHED_MAXIMUM_EVENT_LOGS = 64
+
+uint32 NO_KINEMATICS_SUPPORT = 128
+
+uint32 BRAKE_REMOVAL_FAILURE = 256
+
+uint32 NETWORK_ERROR = 512
+
+uint32 UNABLE_TO_REACH_POSE = 1024
+
+uint32 JOINT_DETECTION_ERROR = 2048
+
+uint32 NETWORK_INITIALIZATION_ERROR = 4096
+
+uint32 MAXIMUM_CURRENT = 8192
+
+uint32 MAXIMUM_VOLTAGE = 16384
+
+uint32 MINIMUM_VOLTAGE = 32768
+
+uint32 MAXIMUM_END_EFFECTOR_TRANSLATION_VELOCITY = 65536
+
+uint32 MAXIMUM_END_EFFECTOR_ORIENTATION_VELOCITY = 131072
+
+uint32 MAXIMUM_END_EFFECTOR_TRANSLATION_ACCELERATION = 262144
+
+uint32 MAXIMUM_END_EFFECTOR_ORIENTATION_ACCELERATION = 524288
+
+uint32 MAXIMUM_END_EFFECTOR_TRANSLATION_FORCE = 1048576
+
+uint32 MAXIMUM_END_EFFECTOR_ORIENTATION_FORCE = 2097152
+
+uint32 MAXIMUM_END_EFFECTOR_PAYLOAD = 4194304
+
+uint32 EMERGENCY_STOP_ACTIVATED = 8388608
+
+uint32 EMERGENCY_LINE_ACTIVATED = 16777216
+
+uint32 INRUSH_CURRENT_LIMITER_FAULT = 33554432
+
+uint32 NVRAM_CORRUPTED = 67108864
+
+uint32 INCOMPATIBLE_FIRMWARE_VERSION = 134217728
+
+uint32 POWERON_SELF_TEST_FAILURE = 268435456
+
+uint32 DISCRETE_INPUT_STUCK_ACTIVE = 536870912
+
+uint32 ARM_INTO_ILLEGAL_POSITION = 1073741824
+
+
+---ActionType.msg---
+
+
+uint32 UNSPECIFIED_ACTION = 0
+
+uint32 SEND_TWIST_COMMAND = 1
+
+uint32 SEND_WRENCH_COMMAND = 2
+
+uint32 SEND_JOINT_SPEEDS = 4
+
+uint32 REACH_POSE = 6
+
+uint32 REACH_JOINT_ANGLES = 7
+
+uint32 TOGGLE_ADMITTANCE_MODE = 13
+
+uint32 SNAPSHOT = 14
+
+uint32 SWITCH_CONTROL_MAPPING = 16
+
+uint32 NAVIGATE_JOINTS = 17
+
+uint32 NAVIGATE_MAPPINGS = 18
+
+uint32 CHANGE_TWIST = 22
+
+uint32 CHANGE_JOINT_SPEEDS = 23
+
+uint32 CHANGE_WRENCH = 25
+
+uint32 APPLY_EMERGENCY_STOP = 28
+
+uint32 CLEAR_FAULTS = 29
+
+uint32 TIME_DELAY = 31
+
+uint32 EXECUTE_ACTION = 32
+
+uint32 SEND_GRIPPER_COMMAND = 33
+
+uint32 SEND_GPIO_COMMAND = 34
+
+uint32 STOP_ACTION = 35
+
+uint32 PLAY_PRE_COMPUTED_TRAJECTORY = 39
+
+uint32 EXECUTE_SEQUENCE = 40
+
+uint32 EXECUTE_WAYPOINT_LIST = 41
+
+
+---NetworkNotificationList.msg---
+
+
+NetworkNotification[] notifications
+
+---ControllerHandle.msg---
+
+
+uint32 type
+uint32 controller_identifier
+
+---BridgeIdentifier.msg---
+
+
+uint32 bridge_id
+
+---CartesianSpeed.msg---
+
+
+float32 translation
+float32 orientation
+
+---WifiSecurityType.msg---
+
+
+uint32 UNSPECIFIED_AUTHENTICATION = 0
+
+uint32 WEP = 1
+
+uint32 WPA2_PERSONAL = 2
+
+uint32 WPA_PERSONAL = 4
+
+uint32 NO_AUTHENTICATION = 8
+
+
+---NavigationDirection.msg---
+
+
+uint32 UNSPECIFIED_NAVIGATION_DIRECTION = 0
+
+uint32 NEXT = 1
+
+uint32 UP = 2
+
+uint32 DOWN = 3
+
+uint32 PREVIOUS = 4
+
+
+---BridgePortConfig.msg---
+
+
+uint32 target_port
+uint32 out_port
+
+---UserEvent.msg---
+
+
+uint32 UNSPECIFIED_USER_EVENT = 0
+
+uint32 LOGGED_OUT = 1
+
+uint32 LOGGED_IN = 2
+
+
+---GpioEvent.msg---
+
+
+uint32 input_type
+uint32 behavior
+uint32 input_identifier
+
+---ProtectionZoneInformation.msg---
+
+
+uint32 event
+
+---GripperMode.msg---
+
+
+uint32 UNSPECIFIED_GRIPPER_MODE = 0
+
+uint32 GRIPPER_FORCE = 1
+
+uint32 GRIPPER_SPEED = 2
+
+uint32 GRIPPER_POSITION = 3
+
+
+---SequenceTask.msg---
+
+
+uint32 group_identifier
+Action action
+string application_data
+
+---SequenceTaskHandle.msg---
+
+
+SequenceHandle sequence_handle
+uint32 task_index
+
+---SequenceTaskConfiguration.msg---
+
+
+SequenceTaskHandle sequence_task_handle
+SequenceTask sequence_task
+
+---BridgeType.msg---
+
+
+uint32 BRIDGE_TYPE_UNSPECIFIED = 0
+
+uint32 BRIDGE_TYPE_UART = 1
+
+uint32 BRIDGE_TYPE_TELNET = 2
+
+
+---BridgeStatus.msg---
+
+
+uint32 BRIDGE_STATUS_OK = 0
+
+uint32 BRIDGE_STATUS_OUTP_UNAVAILABLE = 1
+
+uint32 BRIDGE_STATUS_UNKNOWN_DEVID = 2
+
+uint32 BRIDGE_STATUS_UNKNOWN_BRIDGE_TYPE = 3
+
+uint32 BRIDGE_STATUS_NOT_FOUND = 4
+
+uint32 BRIDGE_STATUS_NOT_INITIALIZED = 5
+
+uint32 BRIDGE_STATUS_UNKNOWN = 6
+
+
+---WifiInformation.msg---
+
+
+Ssid ssid
+uint32 security_type
+uint32 encryption_type
+uint32 signal_quality
+int32 signal_strength
+uint32 frequency
+uint32 channel
+
+---Base_ServiceVersion.msg---
+
+
+uint32 RESERVED_0 = 0
+
+uint32 CURRENT_VERSION = 1
+
+
+---RobotEventNotification.msg---
+
+
+uint32 event
+DeviceHandle handle
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+
+---Sequence.msg---
+
+
+SequenceHandle handle
+string name
+string application_data
+SequenceTask[] tasks
+
+---ProtectionZoneNotificationList.msg---
+
+
+ProtectionZoneNotification[] notifications
+
+---WifiEnableState.msg---
+
+
+bool enabled
+
+---ArmStateInformation.msg---
+
+
+uint32 active_state
+Connection connection
+
+---FullUserProfile.msg---
+
+
+UserProfile user_profile
+string password
+
+---SafetyEvent.msg---
+
+
+SafetyHandle safety_handle
+
+---BluetoothEnableState.msg---
+
+
+bool enabled
+
+---ArmStateNotification.msg---
+
+
+uint32 active_state
+Timestamp timestamp
+Connection connection
+
+---ActivateMapHandle.msg---
+
+
+MappingHandle mapping_handle
+MapGroupHandle map_group_handle
+MapHandle map_handle
+
+---GripperRequest.msg---
+
+
+uint32 mode
+
+---BackupEvent.msg---
+
+
+uint32 UNSPECIFIED_BACKUP_EVENT = 0
+
+uint32 BACKUP_RESTORED = 1
+
+uint32 BACKUP_UPLOADED = 2
+
+
+---BridgeList.msg---
+
+
+BridgeConfig[] bridgeConfig
+
+---Gen3GpioPinId.msg---
+
+
+uint32 UNSPECIFIED_PIN = 0
+
+uint32 GPIO_PIN_B = 1
+
+uint32 GPIO_PIN_C = 2
+
+uint32 GPIO_PIN_D = 3
+
+uint32 GPIO_PIN_E = 4
+
+uint32 GPIO_PIN_G = 5
+
+uint32 GPIO_PIN_H = 6
+
+uint32 GPIO_PIN_I = 7
+
+uint32 GPIO_PIN_K = 8
+
+uint32 GPIO_PIN_N = 9
+
+uint32 GPIO_PIN_O = 10
+
+uint32 GPIO_PIN_S = 11
+
+uint32 GPIO_PIN_T = 12
+
+
+---AppendActionInformation.msg---
+
+
+SequenceHandle sequence_handle
+Action action
+
+---Base_JointSpeeds.msg---
+
+
+JointSpeed[] joint_speeds
+uint32 duration
+
+---ControlModeNotificationList.msg---
+
+
+Base_ControlModeNotification[] notifications
+
+---ConfigurationChangeNotification_configuration_change.msg---
+
+
+SequenceHandle[] sequence_handle
+ActionHandle[] action_handle
+MappingHandle[] mapping_handle
+MapGroupHandle[] map_group_handle
+MapHandle[] map_handle
+UserProfileHandle[] user_profile_handle
+ProtectionZoneHandle[] protection_zone_handle
+SafetyHandle[] safety_handle
+NetworkHandle[] network_handle
+Ssid[] ssid
+ControllerHandle[] controller_handle
+
+---MapEvent_events.msg---
+
+
+SafetyEvent[] safety_event
+GpioEvent[] gpio_event
+ControllerEvent[] controller_event
+
+---GpioConfigurationList.msg---
+
+
+Base_GpioConfiguration[] port_configurations
+
+---ControllerEvent.msg---
+
+
+uint32 input_type
+uint32 behavior
+uint32 input_identifier
+
+---ControllerNotification_state.msg---
+
+
+ControllerState[] controller_state
+ControllerElementState[] controller_element
+
+---Point.msg---
+
+
+float32 x
+float32 y
+float32 z
+
+---ConfigurationNotificationEvent.msg---
+
+
+uint32 UNSPECIFIED_CONFIGURATION_EVENT = 0
+
+uint32 CONFIGURATION_UPDATED = 1
+
+uint32 CONFIGURATION_DELETED = 2
+
+uint32 CONFIGURATION_DELETED_ALL = 3
+
+uint32 CONFIGURATION_CREATED = 4
+
+
+---UserNotification.msg---
+
+
+uint32 user_event
+UserProfileHandle modified_user
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+
+---JointTrajectoryConstraint.msg---
+
+
+uint32 type
+float32 value
+
+---FirmwareComponentVersion.msg---
+
+
+string name
+string version
+uint32 device_id
+
+---WifiInformationList.msg---
+
+
+WifiInformation[] wifi_information_list
+
+---RobotEventNotificationList.msg---
+
+
+RobotEventNotification[] notifications
+
+---TrajectoryErrorType.msg---
+
+
+uint32 TRAJECTORY_ERROR_TYPE_UNSPECIFIED = 0
+
+uint32 TRAJECTORY_ERROR_TYPE_OUTSIDE_WORKSPACE = 1
+
+uint32 TRAJECTORY_ERROR_TYPE_ACTUATOR_COUNT_MISMATCH = 2
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_DURATION = 3
+
+uint32 TRAJECTORY_ERROR_TYPE_JOINT_NO_MOTION = 4
+
+uint32 TRAJECTORY_ERROR_TYPE_ZERO_DISTANCE = 4
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_JOINT_SPEED = 5
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_SPEED = 5
+
+uint32 TRAJECTORY_ERROR_TYPE_LARGE_SPEED = 6
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_JOINT_ACCELERATION = 7
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_ACCELERATION = 7
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_TIME_STEP = 8
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_TRAJECTORY_SIZE = 9
+
+uint32 TRAJECTORY_ERROR_TYPE_LARGE_SIZE = 9
+
+uint32 TRAJECTORY_ERROR_TYPE_WRONG_MODE = 10
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_JOINT_POSITION = 11
+
+uint32 TRAJECTORY_ERROR_TYPE_JOINT_POSITION_LIMIT = 11
+
+uint32 TRAJECTORY_ERROR_TYPE_FILE_ERROR = 12
+
+uint32 TRAJECTORY_ERROR_TYPE_NO_FILE_IN_MEMORY = 13
+
+uint32 TRAJECTORY_ERROR_TYPE_INDEX_OUT_OF_TRAJ = 14
+
+uint32 TRAJECTORY_ERROR_TYPE_TRAJECTORY_ALREADY_RUNNING = 15
+
+uint32 TRAJECTORY_ERROR_TYPE_ALREADY_RUNNING = 15
+
+uint32 TRAJECTORY_ERROR_TYPE_WRONG_STARTING_POINT = 16
+
+uint32 TRAJECTORY_ERROR_TYPE_CARTESIAN_CANNOT_START = 17
+
+uint32 TRAJECTORY_ERROR_TYPE_WRONG_STARTING_SPEED = 18
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_POSITION = 19
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_CARTESIAN_POSITION = 20
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_CARTESIAN_ORIENTATION = 21
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_CARTESIAN_LINEAR_VELOCITY = 22
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_CARTESIAN_ANGULAR_VELOCITY = 23
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_JOINT_TORQUE = 24
+
+uint32 TRAJECTORY_ERROR_TYPE_MULTIPLE_WAYPOINT_TYPE_LIST = 25
+
+uint32 TRAJECTORY_ERROR_TYPE_INITIAL_WAYPOINT_NO_STOP = 26
+
+uint32 TRAJECTORY_ERROR_TYPE_FINAL_WAYPOINT_NO_STOP = 27
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_BLENDING_RADIUS = 28
+
+uint32 TRAJECTORY_ERROR_TYPE_INVALID_REFERENCE_FRAME = 29
+
+uint32 TRAJECTORY_ERROR_TYPE_NUMERICAL_ERROR_IMPOSSIBLE_TRAJECTORY = 30
+
+
+---ConfigurationChangeNotification.msg---
+
+
+uint32 event
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+ConfigurationChangeNotification_configuration_change oneof_configuration_change
+
+---ProtectionZoneEvent.msg---
+
+
+uint32 UNSPECIFIED_PROTECTION_ZONE_EVENT = 0
+
+uint32 REACHED = 1
+
+uint32 ENTERED = 2
+
+uint32 EXITED = 3
+
+
+---ControllerElementHandle.msg---
+
+
+ControllerHandle controller_handle
+ControllerElementHandle_identifier oneof_identifier
+
+---WifiConfiguration.msg---
+
+
+Ssid ssid
+string security_key
+bool connect_automatically
+
+---GpioAction.msg---
+
+
+uint32 UNSPECIFIED_GPIO_ACTION = 0
+
+uint32 GPIOACTION_SET = 1
+
+uint32 GPIOACTION_CLEAR = 2
+
+uint32 GPIOACTION_PULSE_HIGH = 3
+
+uint32 GPIOACTION_PULSE_LOW = 4
+
+
+---MapEvent.msg---
+
+
+string name
+MapEvent_events oneof_events
+
+---EmergencyStop.msg---
+
+
+
+---SequenceInfoNotification.msg---
+
+
+uint32 event_identifier
+SequenceHandle sequence_handle
+uint32 task_index
+uint32 group_identifier
+Timestamp timestamp
+UserProfileHandle user_handle
+uint32 abort_details
+Connection connection
+
+---Admittance.msg---
+
+
+uint32 admittance_mode
+
+---ChangeWrench.msg---
+
+
+float32 force
+float32 torque
+
+---GpioCommand.msg---
+
+
+uint32 port_identifier
+uint32 pin_identifier
+uint32 action
+uint32 period
+
+---OperatingModeNotification.msg---
+
+
+uint32 operating_mode
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+DeviceHandle device_handle
+
+---PreComputedJointTrajectoryElement.msg---
+
+
+float32[] joint_angles
+float32[] joint_speeds
+float32[] joint_accelerations
+float32 time_from_start
+
+---BridgeConfig.msg---
+
+
+uint32 device_identifier
+uint32 bridgetype
+BridgePortConfig port_config
+BridgeIdentifier bridge_id
+
+---Delay.msg---
+
+
+uint32 duration
+
+---Pose.msg---
+
+
+float32 x
+float32 y
+float32 z
+float32 theta_x
+float32 theta_y
+float32 theta_z
+
+---Base_ControlModeInformation.msg---
+
+
+uint32 mode
+
+---SystemTime.msg---
+
+
+uint32 sec
+uint32 min
+uint32 hour
+uint32 mday
+uint32 mon
+uint32 year
+
+---SequenceHandle.msg---
+
+
+uint32 identifier
+uint32 permission
+
+---SequenceTasksConfiguration.msg---
+
+
+SequenceTaskHandle sequence_task_handle
+SequenceTask[] sequence_tasks
+
+---Gripper.msg---
+
+
+Finger[] finger
+
+---ActionList.msg---
+
+
+Action[] action_list
+
+---WifiEncryptionType.msg---
+
+
+uint32 UNSPECIFIED_ENCRYPTION = 0
+
+uint32 AES_ENCRYPTION = 1
+
+uint32 TKIP_ENCRYPTION = 2
+
+uint32 WEP_ENCRYPTION = 4
+
+
+---NetworkHandle.msg---
+
+
+uint32 type
+
+---ControllerConfiguration.msg---
+
+
+ControllerHandle handle
+string name
+MappingHandle active_mapping_handle
+string analog_input_identifier_enum
+string digital_input_identifier_enum
+
+---IPv4Configuration.msg---
+
+
+uint32 ip_address
+uint32 subnet_mask
+uint32 default_gateway
+bool dhcp_enabled
+
+---SequenceList.msg---
+
+
+Sequence[] sequence_list
+
+---ControllerNotificationList.msg---
+
+
+ControllerNotification[] notifications
+
+---SequenceInfoNotificationList.msg---
+
+
+SequenceInfoNotification[] notifications
+
+---ActuatorInformation.msg---
+
+
+uint32 count
+
+---ConstrainedJointAngles.msg---
+
+
+JointAngles joint_angles
+JointTrajectoryConstraint constraint
+
+---ActionHandle.msg---
+
+
+uint32 identifier
+uint32 action_type
+uint32 permission
+
+---UserProfileList.msg---
+
+
+UserProfile[] user_profiles
+
+---MappingInfoNotification.msg---
+
+
+uint32 controller_identifier
+MapHandle active_map_handle
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+MappingHandle mapping_handle
+
+---SequenceTasksPair.msg---
+
+
+SequenceHandle sequence_handle
+uint32 first_task_index
+uint32 second_task_index
+
+---WrenchCommand.msg---
+
+
+uint32 reference_frame
+uint32 mode
+Wrench wrench
+uint32 duration
+
+---JointTorques.msg---
+
+
+JointTorque[] joint_torques
+uint32 duration
+
+---LedState.msg---
+
+
+uint32 UNSPECIFIED_LED_STATE = 0
+
+uint32 LED_OFF = 1
+
+uint32 LED_PULSE = 2
+
+uint32 LED_ON = 3
+
+
+---ControllerType.msg---
+
+
+uint32 UNSPECIFIED_CONTROLLER_TYPE = 0
+
+uint32 XBOX_CONTROLLER = 1
+
+uint32 WRIST_CONTROLLER = 2
+
+uint32 BASIC_JOYSTICK_CONTROLLER = 3
+
+uint32 BASE_GPIO_CONTROLLER = 4
+
+uint32 GPIO_JOYSTICK = 5
+
+
+---RobotEvent.msg---
+
+
+uint32 UNSPECIFIED_ROBOT_EVENT = 0
+
+uint32 ARM_CONNECTED = 1
+
+uint32 ARM_DISCONNECTED = 2
+
+uint32 TOOL_CONNECTED = 5
+
+uint32 TOOL_DISCONNECTED = 6
+
+
+---TrajectoryContinuityMode.msg---
+
+
+uint32 TRAJECTORY_CONTINUITY_MODE_UNSPECIFIED = 0
+
+uint32 TRAJECTORY_CONTINUITY_MODE_POSITION = 1
+
+uint32 TRAJECTORY_CONTINUITY_MODE_SPEED = 2
+
+uint32 TRAJECTORY_CONTINUITY_MODE_ACCELERATION = 3
+
+
+---ServoingModeInformation.msg---
+
+
+uint32 servoing_mode
+
+---TrajectoryInfo.msg---
+
+
+uint32 trajectory_info_type
+uint32 waypoint_index
+uint32 joint_index
+
+---JointAngle.msg---
+
+
+uint32 joint_identifier
+float32 value
+
+---SnapshotType.msg---
+
+
+uint32 UNSPECIFIED_SNAPSHOT = 0
+
+uint32 CARTESIAN_POSITION_SNAPSHOT = 1
+
+uint32 JOINT_POSITION_SNAPSHOT = 2
+
+uint32 GRIPPER_SNAPSHOT = 3
+
+uint32 COMBINED_SNAPSHOT = 4
+
+
+---ControllerNotification.msg---
+
+
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+ControllerNotification_state oneof_state
+
+---ActionEvent.msg---
+
+
+uint32 UNSPECIFIED_ACTION_EVENT = 0
+
+uint32 ACTION_END = 1
+
+uint32 ACTION_ABORT = 2
+
+uint32 ACTION_PAUSE = 3
+
+uint32 ACTION_START = 4
+
+uint32 ACTION_PREPROCESS_START = 5
+
+uint32 ACTION_PREPROCESS_ABORT = 6
+
+uint32 ACTION_PREPROCESS_END = 7
+
+uint32 ACTION_POSTPROCESS_START = 8
+
+uint32 ACTION_POSTPROCESS_ABORT = 9
+
+uint32 ACTION_POSTPROCESS_END = 10
+
+uint32 ACTION_FEEDBACK = 11
+
+
+---Action_action_parameters.msg---
+
+
+TwistCommand[] send_twist_command
+WrenchCommand[] send_wrench_command
+Base_JointSpeeds[] send_joint_speeds
+ConstrainedPose[] reach_pose
+ConstrainedJointAngles[] reach_joint_angles
+uint32[] toggle_admittance_mode
+Snapshot[] snapshot
+SwitchControlMapping[] switch_control_mapping
+uint32[] navigate_joints
+uint32[] navigate_mappings
+ChangeTwist[] change_twist
+ChangeJointSpeeds[] change_joint_speeds
+ChangeWrench[] change_wrench
+EmergencyStop[] apply_emergency_stop
+Faults[] clear_faults
+Delay[] delay
+ActionHandle[] execute_action
+GripperCommand[] send_gripper_command
+GpioCommand[] send_gpio_command
+Base_Stop[] stop_action
+PreComputedJointTrajectory[] play_pre_computed_trajectory
+SequenceHandle[] execute_sequence
+WaypointList[] execute_waypoint_list
+
+---PreComputedJointTrajectory.msg---
+
+
+uint32 mode
+PreComputedJointTrajectoryElement[] trajectory_elements
+
+---WristDigitalInputIdentifier.msg---
+
+
+uint32 UNSPECIFIED_WRIST_DIGITAL = 0
+
+uint32 WRIST_BUTTON_1 = 1
+
+uint32 WRIST_BUTTON_2 = 2
+
+uint32 WRIST_BUTTON_BOTH = 3
+
+
+---ProtectionZoneHandle.msg---
+
+
+uint32 identifier
+uint32 permission
+
+---ProtectionZoneNotification.msg---
+
+
+uint32 event
+ProtectionZoneHandle handle
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+
+---ActionNotificationList.msg---
+
+
+ActionNotification[] notifications
+
+---Mapping.msg---
+
+
+MappingHandle handle
+string name
+uint32 controller_identifier
+MapGroupHandle active_map_group_handle
+MapGroupHandle[] map_group_handles
+MapHandle active_map_handle
+MapHandle[] map_handles
+string application_data
+
+---Base_Position.msg---
+
+
+float32 x
+float32 y
+float32 z
+
+---NetworkEvent.msg---
+
+
+uint32 UNSPECIFIED_NETWORK_EVENT = 0
+
+uint32 WIFI_CONNECTED = 1
+
+uint32 WIFI_DISCONNECTED = 2
+
+uint32 WIFI_SCAN_STARTED = 3
+
+uint32 WIFI_SCAN_RESULTS = 4
+
+uint32 WIFI_SCAN_FAILED = 5
+
+uint32 WIFI_NOT_FOUND = 6
+
+uint32 WIFI_ASSOC_REJECTED = 7
+
+uint32 WIFI_AUTH_WRONG_KEY = 8
+
+uint32 WIFI_AUTH_CONN_FAILED = 9
+
+uint32 WIFI_AUTH_FAILED = 10
+
+uint32 WIFI_ENABLED = 11
+
+uint32 WIFI_DISABLED = 12
+
+uint32 BLUETOOTH_ENABLED = 13
+
+uint32 BLUETOOTH_DISABLED = 14
+
+
+---Timeout.msg---
+
+
+uint32 value
+
+---Ssid.msg---
+
+
+string identifier
+
+---TrajectoryInfoType.msg---
+
+
+uint32 UNSPECIFIED_TRAJECTORY_INFORMATION = 0
+
+uint32 JOINT_ACCELERATION_LIMIT_REACHED = 1
+
+uint32 JOINT_SPEED_LIMIT_REACHED = 2
+
+uint32 JOINT_POSITION_LIMIT_REACHED = 3
+
+uint32 JOINT_TORQUE_LIMIT_REACHED = 4
+
+uint32 SINGULARITY_REGION = 5
+
+uint32 INVERSE_KINEMATIC_FAILED = 6
+
+uint32 CARTESIAN_ACCELERATION_LIMIT_REACHED = 7
+
+uint32 CARTESIAN_SPEED_LIMIT_REACHED = 8
+
+uint32 CARTESIAN_POSITION_LIMIT_REACHED = 9
+
+uint32 CARTESIAN_WRENCH_LIMIT_REACHED = 10
+
+uint32 ENTERING_PROTECTION_ZONE = 11
+
+uint32 WAYPOINT_REACHED = 12
+
+uint32 TRAJECTORY_OK = 13
+
+
+---GpioBehavior.msg---
+
+
+uint32 UNSPECIFIED_GPIO_BEHAVIOR = 0
+
+uint32 GPIO_FALLING = 1
+
+uint32 GPIO_RISING = 2
+
+uint32 GPIO_PULSE_LOW = 3
+
+uint32 GPIO_PULSE_HIGH = 4
+
+uint32 GPIO_ANALOG_CHANGE = 5
+
+
+---TrajectoryErrorElement.msg---
+
+
+uint32 error_type
+uint32 error_identifier
+float32 error_value
+float32 min_value
+float32 max_value
+uint32 index
+string message
+uint32 waypoint_index
+
+---NetworkNotification.msg---
+
+
+uint32 event
+Timestamp timestamp
+UserProfileHandle user_handle
+Connection connection
+
+---TrajectoryErrorIdentifier.msg---
+
+
+uint32 TRAJECTORY_ERROR_IDENTIFIER_UNSPECIFIED = 0
+
+uint32 TRAJECTORY_ERROR_IDENTIFIER_UNAPPLICABLE = 1
+
+uint32 TRAJECTORY_ERROR_IDENTIFIER_TIME = 2
+
+uint32 TRAJECTORY_ERROR_IDENTIFIER_POSITION = 3
+
+uint32 TRAJECTORY_ERROR_IDENTIFIER_VELOCITY = 4
+
+uint32 TRAJECTORY_ERROR_IDENTIFIER_ACCELERATION = 5
+
+
+---ActionNotification.msg---
+
+
+uint32 action_event
+ActionHandle handle
+Timestamp timestamp
+UserProfileHandle user_handle
+uint32 abort_details
+Connection connection
+TrajectoryInfo[] trajectory_info
+
+---SignalQuality.msg---
+
+
+uint32 UNSPECIFIED_SIGNAL_QUALITY = 0
+
+uint32 POOR = 1
+
+uint32 FAIR = 2
+
+uint32 GOOD = 3
+
+uint32 EXCELLENT = 4
+
+uint32 NONE = 5
+
+
+---BridgeResult.msg---
+
+
+BridgeIdentifier bridge_id
+uint32 status
+
+---MapGroupList.msg---
+
+
+MapGroup[] map_groups
+
+---Finger.msg---
+
+
+uint32 finger_identifier
+float32 value
+
+---ControllerList.msg---
+
+
+ControllerHandle[] handles
+
+---ConstrainedJointAngle.msg---
+
+
+uint32 joint_identifier
+float32 value
+JointTrajectoryConstraint constraint
+
+---TransformationRow.msg---
+
+
+float32 c0
+float32 c1
+float32 c2
+float32 c3
+
+---OperatingModeInformation.msg---
+
+
+uint32 operating_mode
+DeviceHandle device_handle
+
+---MapList.msg---
+
+
+Map[] map_list
+
+---AdvancedSequenceHandle.msg---
+
+
+SequenceHandle handle
+bool in_loop
+
+---ConstrainedPosition.msg---
+
+
+Base_Position target_position
+CartesianTrajectoryConstraint constraint
+
+---ChangeJointSpeeds.msg---
+
+
+Base_JointSpeeds joint_speeds
+
+---GpioPinConfiguration.msg---
+
+
+uint32 pin_id
+uint32 pin_property
+bool output_enable
+bool default_output_value
+
+---MapElement.msg---
+
+
+MapEvent event
+Action action
+string name
+
+---SequenceInformation.msg---
+
+
+uint32 event_identifier
+uint32 task_index
+uint32 task_identifier
+
+---SwitchControlMapping.msg---
+
+
+uint32 controller_identifier
+MapGroupHandle map_group_handle
+MapHandle map_handle
+
+---ZoneShape.msg---
+
+
+uint32 shape_type
+Point origin
+Base_RotationMatrix orientation
+float32[] dimensions
+float32 envelope_thickness
+
+---ControllerBehavior.msg---
+
+
+uint32 UNSPECIFIED_CONTROLLER_BEHAVIOR = 0
+
+uint32 CONTROLLER_BUTTON_DOWN = 1
+
+uint32 CONTROLLER_BUTTON_UP = 2
+
+uint32 CONTROLLER_AXIS_POSITIVE = 3
+
+uint32 CONTROLLER_AXIS_NEGATIVE = 4
+
+uint32 CONTROLLER_BUTTON_CLICK = 5
+
+
+---WaypointList.msg---
+
+
+Waypoint[] waypoints
+float32 duration
+bool use_optimal_blending
+
+---Base_RotationMatrix.msg---
+
+
+Base_RotationMatrixRow row1
+Base_RotationMatrixRow row2
+Base_RotationMatrixRow row3
+
+---Xbox360DigitalInputIdentifier.msg---
+
+
+uint32 UNSPECIFIED_XBOX360_DIGITAL = 0
+
+uint32 XBOX360_PAD_UP = 1
+
+uint32 XBOX360_PAD_DOWN = 2
+
+uint32 XBOX360_PAD_LEFT = 3
+
+uint32 XBOX360_PAD_RIGHT = 4
+
+uint32 XBOX360_FILE_BUTTON_START = 5
+
+uint32 XBOX360_DOCUMENT_BUTTON_BACK = 6
+
+uint32 XBOX360_LEFT_THUMB_BUTTON = 7
+
+uint32 XBOX360_RIGHT_THUMB_BUTTON = 8
+
+uint32 XBOX360_LEFT_SHOULDER = 9
+
+uint32 XBOX360_RIGHT_SHOULDER = 10
+
+uint32 XBOX360_BUTTON_A = 13
+
+uint32 XBOX360_BUTTON_B = 14
+
+uint32 XBOX360_BUTTON_X = 15
+
+uint32 XBOX360_BUTTON_Y = 16
+
+
+---CartesianTrajectoryConstraint_type.msg---
+
+
+CartesianSpeed[] speed
+uint32[] duration
+
+---JointNavigationDirection.msg---
+
+
+uint32 UNSPECIFIED_JOINT_NAVIGATION_DIRECTION = 0
+
+uint32 JOINT_NEXT = 1
+
+uint32 JOINT_PREVIOUS = 2
+
+
+---Base_Stop.msg---
+
+
+
+---JointsLimitationsList.msg---
+
+
+JointLimitation[] joints_limitations
+
+---TwistCommand.msg---
+
+
+uint32 reference_frame
+Twist twist
+uint32 duration
+
+---Waypoint.msg---
+
+
+string name
+Waypoint_type_of_waypoint oneof_type_of_waypoint
+
+---WifiConfigurationList.msg---
+
+
+WifiConfiguration[] wifi_configuration_list
+
+---TrajectoryErrorReport.msg---
+
+
+TrajectoryErrorElement[] trajectory_error_elements
+
+---GpioPinPropertyFlags.msg---
+
+
+uint32 GPIOPROPERTY_UNKNOWN = 0
+
+uint32 GPIOPROPERTY_INPUT = 1
+
+uint32 GPIOPROPERTY_OUTPUT = 2
+
+uint32 GPIOPROPERTY_ANALOG = 4
+
+
+---ConstrainedOrientation.msg---
+
+
+Orientation target_orientation
+CartesianTrajectoryConstraint constraint
+
+---ControllerConfigurationList.msg---
+
+
+ControllerConfiguration[] controller_configurations
+
+---UserProfile.msg---
+
+
+UserProfileHandle handle
+string username
+string firstname
+string lastname
+string application_data
+
+---Base_CapSenseMode.msg---
+
+
+uint32 RESERVED = 0
+
+uint32 INACTIVE = 1
+
+uint32 ACTIVE_AUTO_THRESHOLD = 2
+
+uint32 ACTIVE_NOISE_ATT = 4
+
+uint32 ACTIVE_NORMAL = 5
+
+uint32 CONFIGURATION = 6
+
+
+---IPv4Information.msg---
+
+
+uint32 ip_address
+uint32 subnet_mask
+uint32 default_gateway
+
+---ControllerElementHandle_identifier.msg---
+
+
+uint32[] button
+uint32[] axis
+
+---Snapshot.msg---
+
+
+uint32 snapshot_type
+
+---Faults.msg---
+
+
+
+---ProtectionZone.msg---
+
+
+ProtectionZoneHandle handle
+string name
+string application_data
+bool is_enabled
+ZoneShape shape
+CartesianLimitation[] limitations
+CartesianLimitation[] envelope_limitations
+
+---OperatingMode.msg---
+
+
+uint32 UNSPECIFIED_OPERATING_MODE = 0
+
+uint32 MAINTENANCE_MODE = 1
+
+uint32 UPDATE_MODE = 2
+
+uint32 UPDATE_COMPLETED_MODE = 3
+
+uint32 UPDATE_FAILED_MODE = 4
+
+uint32 SHUTTING_DOWN_MODE = 5
+
+uint32 RUN_MODE = 6
+
+uint32 UPDATING_DEVICE_MODE = 7
+
+
+---Orientation.msg---
+
+
+float32 theta_x
+float32 theta_y
+float32 theta_z
+
+---NetworkType.msg---
+
+
+uint32 UNSPECIFIED_NETWORK_TYPE = 0
+
+uint32 WIFI = 1
+
+uint32 WIRED_ETHERNET = 2
+
+uint32 WIRED_MICROUSB = 3
+
+uint32 WIRED_USB = 4
+
+
+---CommunicationInterfaceConfiguration.msg---
+
+
+uint32 type
+bool enable
+
+---UserNotificationList.msg---
+
+
+UserNotification[] notifications
+
+---JointTorque.msg---
+
+
+uint32 joint_identifier
+float32 value
+uint32 duration

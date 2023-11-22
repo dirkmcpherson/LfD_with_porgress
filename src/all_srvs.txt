@@ -1,0 +1,913 @@
+
+
+---TakeSnapshot.srv---
+
+Snapshot input
+---
+Empty output
+
+---GetConfiguredWifi.srv---
+
+Ssid input
+---
+WifiConfiguration output
+
+---GetTwistSoftLimitation.srv---
+
+Empty input
+---
+TwistLimitation output
+
+---ReadAllSequences.srv---
+
+Empty input
+---
+SequenceList output
+
+---UpdateProtectionZone.srv---
+
+ProtectionZone input
+---
+Empty output
+
+---GetControllerConfigurationMode.srv---
+
+Empty input
+---
+ControllerConfigurationMode output
+
+---ReadAllActions.srv---
+
+RequestedActionType input
+---
+ActionList output
+
+---GetBluetoothEnableState.srv---
+
+Empty input
+---
+BluetoothEnableState output
+
+---ReadAllProtectionZones.srv---
+
+Empty input
+---
+ProtectionZoneList output
+
+---GetAllJointsTorqueSoftLimitation.srv---
+
+Empty input
+---
+JointsLimitationsList output
+
+---GetWrenchHardLimitation.srv---
+
+Empty input
+---
+WrenchLimitation output
+
+---OnNotificationSequenceInfoTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---CreateMap.srv---
+
+Map input
+---
+MapHandle output
+
+---ConnectWifi.srv---
+
+Ssid input
+---
+Empty output
+
+---Base_Unsubscribe.srv---
+
+NotificationHandle input
+---
+Empty output
+
+---OnNotificationServoingModeTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---Base_GetCapSenseConfig.srv---
+
+Empty input
+---
+Base_CapSenseConfig output
+
+---ReadAllSequenceTasks.srv---
+
+SequenceHandle input
+---
+SequenceTasks output
+
+---OnNotificationUserTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---SetWifiCountryCode.srv---
+
+CountryCode input
+---
+Empty output
+
+---SetBluetoothEnableState.srv---
+
+BluetoothEnableState input
+---
+Empty output
+
+---ResumeSequence.srv---
+
+Empty input
+---
+Empty output
+
+---OnNotificationMappingInfoTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---CreateAction.srv---
+
+Action input
+---
+ActionHandle output
+
+---OnNotificationProtectionZoneTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---StopSequence.srv---
+
+Empty input
+---
+Empty output
+
+---CreateProtectionZone.srv---
+
+ProtectionZone input
+---
+ProtectionZoneHandle output
+
+---GetAllJointsSpeedHardLimitation.srv---
+
+Empty input
+---
+JointsLimitationsList output
+
+---OnNotificationRobotEventTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---IsCommunicationInterfaceEnable.srv---
+
+NetworkHandle input
+---
+CommunicationInterfaceConfiguration output
+
+---DeleteAction.srv---
+
+ActionHandle input
+---
+Empty output
+
+---GetOperatingMode.srv---
+
+Empty input
+---
+OperatingModeInformation output
+
+---ExecuteWaypointTrajectory.srv---
+
+WaypointList input
+---
+Empty output
+
+---OnNotificationActionTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---PlaySequence.srv---
+
+SequenceHandle input
+---
+Empty output
+
+---PlayAdvancedSequence.srv---
+
+AdvancedSequenceHandle input
+---
+Empty output
+
+---StopAction.srv---
+
+Empty input
+---
+Empty output
+
+---SetControllerConfiguration.srv---
+
+ControllerConfiguration input
+---
+Empty output
+
+---MoveSequenceTask.srv---
+
+SequenceTasksPair input
+---
+Empty output
+
+---ReadSequenceTask.srv---
+
+SequenceTaskHandle input
+---
+SequenceTask output
+
+---SendWrenchCommand.srv---
+
+WrenchCommand input
+---
+Empty output
+
+---ReadMapping.srv---
+
+MappingHandle input
+---
+Mapping output
+
+---ReadAllUserProfiles.srv---
+
+Empty input
+---
+UserProfileList output
+
+---OnNotificationNetworkTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---ReadSequence.srv---
+
+SequenceHandle input
+---
+Sequence output
+
+---GetMeasuredJointAngles.srv---
+
+Empty input
+---
+JointAngles output
+
+---GetMeasuredGripperMovement.srv---
+
+GripperRequest input
+---
+Gripper output
+
+---UpdateUserProfile.srv---
+
+UserProfile input
+---
+Empty output
+
+---DeleteWifiConfiguration.srv---
+
+Ssid input
+---
+Empty output
+
+---OnNotificationArmStateTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---GetBridgeConfig.srv---
+
+BridgeIdentifier input
+---
+BridgeConfig output
+
+---ChangePassword.srv---
+
+PasswordChange input
+---
+Empty output
+
+---DeleteSequenceTask.srv---
+
+SequenceTaskHandle input
+---
+Empty output
+
+---PauseSequence.srv---
+
+Empty input
+---
+Empty output
+
+---GetAllJointsSpeedSoftLimitation.srv---
+
+Empty input
+---
+JointsLimitationsList output
+
+---AddSequenceTasks.srv---
+
+SequenceTasksConfiguration input
+---
+SequenceTasksRange output
+
+---ComputeInverseKinematics.srv---
+
+IKData input
+---
+JointAngles output
+
+---UpdateEndEffectorTypeConfiguration.srv---
+
+ProductConfigurationEndEffectorType input
+---
+Empty output
+
+---ApplyEmergencyStop.srv---
+
+Empty input
+---
+Empty output
+
+---GetActuatorCount.srv---
+
+Empty input
+---
+ActuatorInformation output
+
+---SetAdmittance.srv---
+
+Admittance input
+---
+Empty output
+
+---SendJointSpeedsCommand.srv---
+
+Base_JointSpeeds input
+---
+Empty output
+
+---GetAllJointsTorqueHardLimitation.srv---
+
+Empty input
+---
+JointsLimitationsList output
+
+---DisableBridge.srv---
+
+BridgeIdentifier input
+---
+BridgeResult output
+
+---ExecuteActionFromReference.srv---
+
+ActionHandle input
+---
+Empty output
+
+---GetAllControllerConfigurations.srv---
+
+Empty input
+---
+ControllerConfigurationList output
+
+---UpdateSequence.srv---
+
+Sequence input
+---
+Empty output
+
+---DeleteUserProfile.srv---
+
+UserProfileHandle input
+---
+Empty output
+
+---UpdateSequenceTask.srv---
+
+SequenceTaskConfiguration input
+---
+Empty output
+
+---SendWrenchJoystickCommand.srv---
+
+WrenchCommand input
+---
+Empty output
+
+---SetWifiEnableState.srv---
+
+WifiEnableState input
+---
+Empty output
+
+---GetWifiInformation.srv---
+
+Ssid input
+---
+WifiInformation output
+
+---Base_SetCapSenseConfig.srv---
+
+Base_CapSenseConfig input
+---
+Empty output
+
+---GetControllerConfiguration.srv---
+
+ControllerHandle input
+---
+ControllerConfiguration output
+
+---ReadProtectionZone.srv---
+
+ProtectionZoneHandle input
+---
+ProtectionZone output
+
+---DeleteAllSequenceTasks.srv---
+
+SequenceHandle input
+---
+Empty output
+
+---Base_ClearFaults.srv---
+
+Empty input
+---
+Empty output
+
+---GetWrenchSoftLimitation.srv---
+
+Empty input
+---
+WrenchLimitation output
+
+---PauseAction.srv---
+
+Empty input
+---
+Empty output
+
+---OnNotificationConfigurationChangeTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---GetAllConnectedControllers.srv---
+
+Empty input
+---
+ControllerList output
+
+---EnableBridge.srv---
+
+BridgeConfig input
+---
+BridgeResult output
+
+---PlayCartesianTrajectoryPosition.srv---
+
+ConstrainedPosition input
+---
+Empty output
+
+---GetWifiCountryCode.srv---
+
+Empty input
+---
+CountryCode output
+
+---GetAvailableWifi.srv---
+
+Empty input
+---
+WifiInformationList output
+
+---Stop.srv---
+
+Empty input
+---
+Empty output
+
+---AddWifiConfiguration.srv---
+
+WifiConfiguration input
+---
+Empty output
+
+---RestoreFactoryProductConfiguration.srv---
+
+Empty input
+---
+Empty output
+
+---OnNotificationOperatingModeTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---RestoreFactorySettings.srv---
+
+Empty input
+---
+Empty output
+
+---DeleteMapping.srv---
+
+MappingHandle input
+---
+Empty output
+
+---DisconnectWifi.srv---
+
+Empty input
+---
+Empty output
+
+---SetIPv4Configuration.srv---
+
+FullIPv4Configuration input
+---
+Empty output
+
+---GetTrajectoryErrorReport.srv---
+
+Empty input
+---
+TrajectoryErrorReport output
+
+---ValidateWaypointList.srv---
+
+WaypointList input
+---
+WaypointValidationReport output
+
+---ExecuteAction.srv---
+
+Action input
+---
+Empty output
+
+---StartTeaching.srv---
+
+SequenceTaskHandle input
+---
+Empty output
+
+---GetWifiEnableState.srv---
+
+Empty input
+---
+WifiEnableState output
+
+---DuplicateMap.srv---
+
+MapHandle input
+---
+MapHandle output
+
+---SendTwistJoystickCommand.srv---
+
+TwistCommand input
+---
+Empty output
+
+---PlayJointTrajectory.srv---
+
+ConstrainedJointAngles input
+---
+Empty output
+
+---UpdateMap.srv---
+
+Map input
+---
+Empty output
+
+---CreateUserProfile.srv---
+
+FullUserProfile input
+---
+UserProfileHandle output
+
+---GetFirmwareBundleVersions.srv---
+
+Empty input
+---
+FirmwareBundleVersions output
+
+---OnNotificationControllerTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---ReadAllUsers.srv---
+
+Empty input
+---
+UserList output
+
+---SetServoingMode.srv---
+
+ServoingModeInformation input
+---
+Empty output
+
+---UpdateAction.srv---
+
+Action input
+---
+Empty output
+
+---SetCommunicationInterfaceEnable.srv---
+
+CommunicationInterfaceConfiguration input
+---
+Empty output
+
+---DeleteSequence.srv---
+
+SequenceHandle input
+---
+Empty output
+
+---SendGripperCommand.srv---
+
+GripperCommand input
+---
+Empty output
+
+---SendSelectedJointSpeedCommand.srv---
+
+JointSpeed input
+---
+Empty output
+
+---GetMeasuredCartesianPose.srv---
+
+Empty input
+---
+Pose output
+
+---ReadUserProfile.srv---
+
+UserProfileHandle input
+---
+UserProfile output
+
+---PlayCartesianTrajectory.srv---
+
+ConstrainedPose input
+---
+Empty output
+
+---GetArmState.srv---
+
+Empty input
+---
+ArmStateInformation output
+
+---GetTwistHardLimitation.srv---
+
+Empty input
+---
+TwistLimitation output
+
+---DuplicateMapping.srv---
+
+MappingHandle input
+---
+MappingHandle output
+
+---StopTeaching.srv---
+
+Empty input
+---
+Empty output
+
+---GetControllerState.srv---
+
+ControllerHandle input
+---
+ControllerState output
+
+---ReadMap.srv---
+
+MapHandle input
+---
+Map output
+
+---Base_OnNotificationControlModeTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---SetOperatingMode.srv---
+
+OperatingModeInformation input
+---
+Empty output
+
+---GetConnectedWifiInformation.srv---
+
+Empty input
+---
+WifiInformation output
+
+---GetIPv4Information.srv---
+
+NetworkHandle input
+---
+IPv4Information output
+
+---ReadAction.srv---
+
+ActionHandle input
+---
+Action output
+
+---DeleteMap.srv---
+
+MapHandle input
+---
+Empty output
+
+---GetBridgeList.srv---
+
+Empty input
+---
+BridgeList output
+
+---CreateMapping.srv---
+
+Mapping input
+---
+MappingHandle output
+
+---ReadAllMappings.srv---
+
+Empty input
+---
+MappingList output
+
+---ResumeAction.srv---
+
+Empty input
+---
+Empty output
+
+---Base_GetControlMode.srv---
+
+Empty input
+---
+Base_ControlModeInformation output
+
+---UpdateMapping.srv---
+
+Mapping input
+---
+Empty output
+
+---CreateSequence.srv---
+
+Sequence input
+---
+SequenceHandle output
+
+---ComputeForwardKinematics.srv---
+
+JointAngles input
+---
+Pose output
+
+---OnNotificationFactoryTopic.srv---
+
+NotificationOptions input
+---
+NotificationHandle output
+
+---ActivateMap.srv---
+
+ActivateMapHandle input
+---
+Empty output
+
+---PlayPreComputedJointTrajectory.srv---
+
+PreComputedJointTrajectory input
+---
+Empty output
+
+---GetIPv4Configuration.srv---
+
+NetworkHandle input
+---
+IPv4Configuration output
+
+---PlaySelectedJointTrajectory.srv---
+
+ConstrainedJointAngle input
+---
+Empty output
+
+---SendSelectedJointSpeedJoystickCommand.srv---
+
+JointSpeed input
+---
+Empty output
+
+---SetControllerConfigurationMode.srv---
+
+ControllerConfigurationMode input
+---
+Empty output
+
+---StartWifiScan.srv---
+
+Empty input
+---
+Empty output
+
+---PlayCartesianTrajectoryOrientation.srv---
+
+ConstrainedOrientation input
+---
+Empty output
+
+---ReadAllMaps.srv---
+
+MappingHandle input
+---
+MapList output
+
+---SendJointSpeedsJoystickCommand.srv---
+
+Base_JointSpeeds input
+---
+Empty output
+
+---GetAllConfiguredWifis.srv---
+
+Empty input
+---
+WifiConfigurationList output
+
+---DeleteProtectionZone.srv---
+
+ProtectionZoneHandle input
+---
+Empty output
+
+---GetServoingMode.srv---
+
+Empty input
+---
+ServoingModeInformation output
+
+---GetProductConfiguration.srv---
+
+Empty input
+---
+CompleteProductConfiguration output
+
+---SwapSequenceTasks.srv---
+
+SequenceTasksPair input
+---
+Empty output
+
+---SendTwistCommand.srv---
+
+TwistCommand input
+---
+Empty output
