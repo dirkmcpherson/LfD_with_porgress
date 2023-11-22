@@ -28,13 +28,13 @@ class ArmReplayer:
                 self.arm.goto_joint_pose(msg.position[:6])
             cnt += 1
             if isinstance(msg, JointState) or 1:
-                for i in range(6): 
+                for i in range(10): 
                     joint = JointAngle()
                     joint.joint_identifier = i 
                     joint.value = msg.position[i] * 180 / 3.1415926
                     cja.input.joint_angles.joint_angles.append(joint)
-            cja.constraint.type = 0
-            cja.constraint.value = 0.0
+            # cja.constraint.type = 0
+            # cja.constraint.value = 0.0
             play_joint_traj(cja) 
             time.sleep(3)   
             print( cja)    
