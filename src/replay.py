@@ -14,51 +14,41 @@ class ArmReplayer:
         self.arm = kortex_arm.Arm()
         self.arm.home_arm()
 
-    # def read_bag(self):
-    #     play_joint_traj = rospy.ServiceProxy('/my_gen3_lite/base/play_joint_trajectory', PlayJointTrajectory)
-    #     #cja = PlayJointTrajectoryRequest()
-    #     #cja = ConstrainedJointAngles()
-    #     trj = []
-    #     #print(cja)
-    #     cnt = 0
-    #     for topic, msg, t in self.bag.read_messages(topics=['/my_gen3_lite/joint_states']):
-    #         cja = PlayJointTrajectoryRequest()
-    #         #print(msg)
-    #         if cnt == 0:
-    #             self.arm.goto_joint_pose(msg.position[:6])
-    #         cnt += 1
-    #         if isinstance(msg, JointState) or 1:
-    #             for i in range(6): 
-    #                 joint = JointAngle()
-    #                 joint.joint_identifier = i 
-    #                 joint.value = msg.position[i] * 180 / 3.1415926
-    #                 cja.input.joint_angles.joint_angles.append(joint)
-    #         play_joint_traj(cja) 
-    #         time.sleep(3)   
-    #         print( cja)    
-            # cja.constraint.type = 0
-            # cja.constraint.value = 0.0
-            #if cnt == 5:
-                #break
-        #print(cja)
-        
-            #break
-        # cja.constraint.type = 0
-        # cja.constraint.value = 0.0
-        #cja.
-        #print(cja)
-        #play_joint_traj(cja)
-        
     def read_bag(self):
-        waypoints = []
+        play_joint_traj = rospy.ServiceProxy('/my_gen3_lite/base/play_joint_trajectory', PlayJointTrajectory)
+        #cja = PlayJointTrajectoryRequest()
+        #cja = ConstrainedJointAngles()
+        trj = []
+        #print(cja)
+        cnt = 0
         for topic, msg, t in self.bag.read_messages(topics=['/my_gen3_lite/joint_states']):
-            #print("hhhh")
+            cja = PlayJointTrajectoryRequest()
             #print(msg)
+            if cnt == 0:
+                self.arm.goto_joint_pose(msg.position[:6])
+            cnt += 1
             if isinstance(msg, JointState) or 1:
-                waypoints.append(msg.position[:6])
-        self.arm.goto_joint_waypoints(waypoints)
+                for i in range(6): 
+                    joint = JointAngle()
+                    joint.joint_identifier = i 
+                    joint.value = msg.position[i] * 180 / 3.1415926
+                    cja.input.joint_angles.joint_angles.append(joint)
+            cja.constraint.type = 0
+            cja.constraint.value = 0.0
+            play_joint_traj(cja) 
+            time.sleep(3)   
+            print( cja)    
+        
+    # def read_bag(self):
+    #     waypoints = []
+    #     for topic, msg, t in self.bag.read_messages(topics=['/my_gen3_lite/joint_states']):
+    #         #print("hhhh")
+    #         #print(msg)
+    #         if isinstance(msg, JointState) or 1:
+    #             waypoints.append(msg.position[:6])
+    #     self.arm.goto_joint_waypoints(waypoints)
 
-        print(self.joint_trajectory)
+    #     print(self.joint_trajectory)
     def play_trajectory(self):
         print("start_replay1")
         rospy.wait_for_service('/my_gen3_lite/base/play_joint_trajectory')
