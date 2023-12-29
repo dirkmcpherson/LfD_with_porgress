@@ -1,0 +1,37 @@
+axes:
+  - deadzone: 0.0           #1
+    output: AXIS_ROLL # Left joystick horizontal - rotation around X-axis
+    scale: 1.0
+  - deadzone: 0.0        #2
+    output: AXIS_PITC  # Left joystick vertical - rotation around Y-axis
+    scale: 1.0
+  - deadzone: 0.0       #3
+    output:  "" # left button front
+    scale: 1.0
+  - deadzone: 0.1      #4
+    output:  AXIS_Y # Right joystick horizontal - linear movement along X-axis
+    scale: 1.0
+  - deadzone: 0.1     #5
+    output:  AXIS_X # Right joystick vertical - linear movement along Y-axis
+    scale: 1.0
+  - deadzone: 0.1   #6
+    output: # Right button front
+    scale: 1.0
+  - deadzone: 0.0 # direction button horizontal 
+    output: AXIS_YAW # Unused axis
+    scale: 1.0
+  - deadzone: 0.0 # direction button vertical 
+    output:  "AXIS_Z"   # Unused axis
+    scale: 1.0
+buttons:
+  - output:  OPEN_GRIPPER # The following four is one of the x y a b
+  - output: CLOSE_GRIPPER # 
+  - output:  # Unused button
+  - output:   # Unused button
+  - output: SWING_LEFT
+  - output: SWING_RIGHT
+  - output: ''  # Unused button
+  - output: ''  # Unused button
+  - output: RESET  #  XBox button
+  - output: ''  # Unused button
+  - output: ''  # Unused button
