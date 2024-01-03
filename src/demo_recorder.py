@@ -28,7 +28,7 @@ class ArmRecorder:
         self.bag = rosbag.Bag(bag_name, 'w')
         self.is_recording = False
         self.last_record_time = time.time()
-        self.record_interval = 1.0 / 10  # Interval for 5 Hz recording
+        self.record_interval = 1.0 / 8  # Interval for 5 Hz recording
         self.lastest_obj_pose = None
        # self.obj_pose_sub = rospy.Subscriber("obj_pose", Pose, self.obj_pose_callback)
         self.joint_state_sub = rospy.Subscriber("/my_gen3_lite/joint_states", JointState, self.joint_state_callback)
@@ -70,23 +70,27 @@ class ArmRecorder:
         self.cnt += 1  # Increment the counter for a new file
         bag_name = self.path  + str(self.cnt) + '.bag'
         self.bag = rosbag.Bag(bag_name, 'w') 
+        print("New bag created.")
         
 
     def start_recording(self):
         if not self.is_recording:
             self.is_recording = True
             rospy.loginfo("Recording started.")
+            print("Recording started.")
 
     def stop_recording(self):
         if self.is_recording:
             self.is_recording = False
             rospy.loginfo("Recording stopped.")
+            print("Recording stopped.")
             #self.close_bag()
 
     def end_script(self):
         self.close_bag()
         self.listener.stop()
         rospy.signal_shutdown("Script ended by user.")
+        print("Script ended by user.")
     def obj_pose_callback(self, msg):
             self.latest_obj_pose = msg
 
@@ -94,7 +98,7 @@ class ArmRecorder:
         if self.is_recording and time.time() - self.last_record_time >= self.record_interval:
             try:
                 self.last_record_time = time.time()
-                print(msg)
+                # print(msg)
                 self.bag.write("/my_gen3_lite/joint_states", msg)
                 # if self.latest_obj_pose:
                 #     self.bag.write("obj_pose", self.latest_obj_pose)
@@ -104,6 +108,7 @@ class ArmRecorder:
 
 
     def close_bag(self):
+        time.sleep(1)
         self.bag.close()
         rospy.loginfo("Bag file saved.")
 

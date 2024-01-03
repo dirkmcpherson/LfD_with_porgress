@@ -7,6 +7,7 @@ from sensor_msgs.msg import JointState
 from kortex_driver.srv import *
 from armpy import kortex_arm
 import time
+import numpy as np
 class ArmReplayer:
     def __init__(self, folder_name = None):
         self.path = '/home/hang/catkin_ws/src/ldf_with_progress/bags/'
@@ -70,10 +71,22 @@ class ArmReplayer:
             for j in range(int(len(msg)/frequency) * i, min(len(msg), int(len(msg)/frequency) * (i + 1))):
                 waypoints.append(msg[j].position)
             self.arm.goto_joint_gripper_waypoints(waypoints)
-            progress = input('Please input the progress: ')
-            progresses.append(progress)
-            scalar = input('Please input the scalar: ')
-            scalars.append(scalar)
+            random_number = np.random.rand()
+            if random_number < 0.5:
+                if len(progresses) > 0:
+                    print("your last progress is: ", progresses[-1])
+        
+                progress = input('Please input the progress: ')
+                progresses.append(progress)
+                scalar = input('Please input the scalar: ')
+                scalars.append(scalar)
+            else:
+                scalar = input('Please input the scalar: ')
+                scalars.append(scalar)
+                if len(progresses) > 0:
+                    print("your last progress is: ", progresses[-1])
+                progress = input('Please input the progress: ')
+                progresses.append(progress)
         print(progresses)
         #write progresses to file
         if cnt is None:
@@ -139,17 +152,17 @@ if __name__ == '__main__':
     # print(time.time() - now)
 
 
-    now = time.time()
-    replayer.replay_via_joint_state_with_gripper()
-    print(time.time() - now)
+    # now = time.time()
+    # replayer.replay_via_joint_state_with_gripper()
+    # print(time.time() - now)
 
     # now = time.time()
     # replayer.replay_via_joint_state()
     # print(time.time() - now)
 
-    # now = time.time()
-    # replayer.replay_with_progress_collect()
-    # print(time.time() - now)
+    now = time.time()
+    replayer.replay_with_progress_collect()
+    print(time.time() - now)
 
     #replayer.play_trajectory()
     replayer.close_bag()
