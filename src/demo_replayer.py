@@ -60,7 +60,7 @@ class ArmReplayer:
         self.arm.goto_joint_gripper_waypoints(waypoints)
         self.cnt += 1
     
-    def replay_with_progress_collect(self, frequency = 10, cnt = None, msg = None):
+    def replay_with_progress_collect(self, frequency = 10, cnt = None, msg = None, auto = False):
         self.arm.home_arm()
         progresses = []
         scalars = []
@@ -70,23 +70,29 @@ class ArmReplayer:
             waypoints = []
             for j in range(int(len(msg)/frequency) * i, min(len(msg), int(len(msg)/frequency) * (i + 1))):
                 waypoints.append(msg[j].position)
+            if i == frequency - 1:
+                for j in range(int(len(msg)/frequency) * (i + 1), len(msg)):
+                    waypoints.append(msg[j].position)
             self.arm.goto_joint_gripper_waypoints(waypoints)
             random_number = np.random.rand()
-            if random_number < 0.5:
-                if len(progresses) > 0:
-                    print("your last progress is: ", progresses[-1])
-        
-                progress = input('Please input the progress: ')
-                progresses.append(progress)
-                scalar = input('Please input the scalar: ')
-                scalars.append(scalar)
+            if auto:
+                pass
             else:
-                scalar = input('Please input the scalar: ')
-                scalars.append(scalar)
-                if len(progresses) > 0:
-                    print("your last progress is: ", progresses[-1])
-                progress = input('Please input the progress: ')
-                progresses.append(progress)
+                if random_number < 0.5:
+                    if len(progresses) > 0:
+                        print("your last progress is: ", progresses[-1])
+            
+                    progress = input('Please input the progress: ')
+                    progresses.append(progress)
+                    scalar = input('Please input the scalar: ')
+                    scalars.append(scalar)
+                else:
+                    scalar = input('Please input the scalar: ')
+                    scalars.append(scalar)
+                    if len(progresses) > 0:
+                        print("your last progress is: ", progresses[-1])
+                    progress = input('Please input the progress: ')
+                    progresses.append(progress)
         print(progresses)
         #write progresses to file
         if cnt is None:
@@ -96,7 +102,7 @@ class ArmReplayer:
                 f.write("%s\n" % item)
             f.close()
         with open(self.path + str(cnt) + "_scalar.txt", 'w') as f:
-            for item in scalar:
+            for item in scalars:
                 f.write("%s\n" % item)
             f.close()
         self.cnt += 1
@@ -135,16 +141,16 @@ class ArmReplayer:
 if __name__ == '__main__':
     rospy.init_node('arm_replayer', anonymous=True)
     #folder = input('Please input the folder name: ')
-    folder = "user3"
+    folder = "user2"
 
     replayer = ArmReplayer(folder)
     #bag = input('Please input the bag number: ')
     bag = 0
     replayer.read_bag(bag)
 
-    # poses = replayer.out_put_positions()
-    # replayer.write_poses_to_file(poses)
-    # print(poses)
+    poses = replayer.out_put_positions()
+    replayer.write_poses_to_file(poses)
+    print(poses)
 
 
     # now = time.time()
@@ -161,7 +167,7 @@ if __name__ == '__main__':
     # print(time.time() - now)
 
     now = time.time()
-    replayer.replay_with_progress_collect()
+    replayer.replay_with_progress_collect(auto=True)
     print(time.time() - now)
 
     #replayer.play_trajectory()

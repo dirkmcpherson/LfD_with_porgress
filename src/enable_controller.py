@@ -50,7 +50,7 @@ def check_limit(limit_check):
                 cartesian_vel_publisher.publish(cartesian_command)
                 temp = z
                 time.sleep(1)
-            if z - temp > 0.002:
+            if z - temp > 0.00:
                 temp = z
                 time.sleep(0.1)
         else:

@@ -1,9 +1,9 @@
 axes:
   - deadzone: 0.0           #1
-    output: AXIS_ROLL # Left joystick horizontal - rotation around X-axis
+    output: AXIS_PITC # Left joystick horizontal - rotation around X-axis
     scale: 1.0
   - deadzone: 0.0        #2
-    output: AXIS_PITC  # Left joystick vertical - rotation around Y-axis
+    output:  AXIS_ROLL # Left joystick vertical - rotation around Y-axis
     scale: 1.0
   - deadzone: 0.0       #3
     output:  "" # left button front

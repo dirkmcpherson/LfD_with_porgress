@@ -6,7 +6,7 @@ from pynput import keyboard
 import time
 from armpy import kortex_arm
 from geometry_msgs.msg import Pose
-
+import cv2
 
 class ArmRecorder:
     def __init__(self, folder_name = None):
@@ -29,13 +29,19 @@ class ArmRecorder:
         self.is_recording = False
         self.last_record_time = time.time()
         self.record_interval = 1.0 / 8  # Interval for 5 Hz recording
-        self.lastest_obj_pose = None
-       # self.obj_pose_sub = rospy.Subscriber("obj_pose", Pose, self.obj_pose_callback)
+        self.lastest_obj_pose = Pose()
+        self.lastest_obj_pose.position.x = 0
+        self.lastest_obj_pose.position.y = 0
+       # self.obj_pose_sub = rospy.Subscriber("/obj_pose", Pose, self.obj_pose_callback)
         self.joint_state_sub = rospy.Subscriber("/my_gen3_lite/joint_states", JointState, self.joint_state_callback)
-
-
+        self.cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
+        self.video_writer = None
+        if not self.cap.isOpened():
+            rospy.logerr("Error: Camera is not opened.")
+            exit()
         self.listener = keyboard.Listener(on_press=self.on_press)
         self.listener.start()
+
 
     def on_press(self, key):
         try:
@@ -51,6 +57,7 @@ class ArmRecorder:
                 self.reset_recording()
         except AttributeError:
             pass
+
     def reset_recording(self):
         self.stop_recording()
         self.close_bag()
@@ -78,6 +85,20 @@ class ArmRecorder:
             self.is_recording = True
             rospy.loginfo("Recording started.")
             print("Recording started.")
+            fourcc = cv2.VideoWriter_fourcc(*'XVID')
+            self.video_writer = cv2.VideoWriter(self.path + str(self.cnt) + '.avi', fourcc, 20.0, (640, 480))
+            if not self.video_writer.isOpened():
+                rospy.logerr("Error: Video writer not opened.")
+                exit()
+
+
+    def record_video_frame(self):
+        if self.is_recording and self.video_writer is not None:
+            ret, frame = self.cap.read()
+            if ret:
+                self.video_writer.write(frame)
+            else:
+                rospy.logwarn("Error: Frame capture failed.")
 
     def stop_recording(self):
         if self.is_recording:
@@ -85,12 +106,20 @@ class ArmRecorder:
             rospy.loginfo("Recording stopped.")
             print("Recording stopped.")
             #self.close_bag()
+            if self.video_writer is not None:
+                self.video_writer.release()
+                self.video_writer = None
 
     def end_script(self):
         self.close_bag()
         self.listener.stop()
         rospy.signal_shutdown("Script ended by user.")
         print("Script ended by user.")
+        self.cap.release()
+        if self.video_writer is not None:
+            self.video_writer.release()
+
+
     def obj_pose_callback(self, msg):
             self.latest_obj_pose = msg
 
@@ -100,8 +129,8 @@ class ArmRecorder:
                 self.last_record_time = time.time()
                 # print(msg)
                 self.bag.write("/my_gen3_lite/joint_states", msg)
-                # if self.latest_obj_pose:
-                #     self.bag.write("obj_pose", self.latest_obj_pose)
+                if self.lastest_obj_pose:
+                    self.bag.write("obj_pose", self.lastest_obj_pose)
             except ValueError as e:
                 rospy.logwarn("Error writing to bag file: " + str(e))
                 # Additional handling if nesecessary
@@ -116,6 +145,10 @@ if __name__ == '__main__':
     rospy.init_node('arm_recorder', anonymous=True, disable_signals=True)
     rospy.Rate(30)  # This rate is not used for recording, only for rospy spin 
     #folder = input('Please input the folder name: ')
-    folder = "user3"
+    folder = "user6"
+    
     recorder = ArmRecorder(folder)
-    rospy.spin()
+    recorder.record_video_frame()
+    while not rospy.is_shutdown():
+        recorder.record_video_frame()
+        rospy.sleep(0.05)
