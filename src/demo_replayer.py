@@ -141,7 +141,7 @@ class ArmReplayer:
 if __name__ == '__main__':
     rospy.init_node('arm_replayer', anonymous=True)
     #folder = input('Please input the folder name: ')
-    folder = "user2"
+    folder = "user5"
 
     replayer = ArmReplayer(folder)
     #bag = input('Please input the bag number: ')
