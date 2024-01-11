@@ -39,6 +39,7 @@ class ArmReplayer:
 
         print(len(self.msg))
         return self.msg
+    
     def replay_via_joint_state(self, msg = None):
         self.arm.home_arm()
         if msg is None:
@@ -66,7 +67,8 @@ class ArmReplayer:
         scalars = []
         if msg is None:
             msg = self.msg
-        for i in range(frequency):
+        for i in range(0,frequency):
+            
             waypoints = []
             for j in range(int(len(msg)/frequency) * i, min(len(msg), int(len(msg)/frequency) * (i + 1))):
                 waypoints.append(msg[j].position)
@@ -167,7 +169,7 @@ if __name__ == '__main__':
     # print(time.time() - now)
 
     now = time.time()
-    replayer.replay_with_progress_collect(auto=True)
+    replayer.replay_with_progress_collect(auto=False)
     print(time.time() - now)
 
     #replayer.play_trajectory()
