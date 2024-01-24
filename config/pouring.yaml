@@ -1,6 +1,6 @@
 axes:
   - deadzone: 0.0           #1
-    output: AXIS_PITC # Left joystick horizontal - rotation around X-axis
+    output: AXIS_PITCH # Left joystick horizontal - rotation around X-axis
     scale: 1.0
   - deadzone: 0.0        #2
     output:  AXIS_ROLL # Left joystick vertical - rotation around Y-axis
@@ -24,12 +24,12 @@ axes:
     output:  "AXIS_Z"   # Unused axis
     scale: 1.0
 buttons:
-  - output:  OPEN_GRIPPER # The following four is one of the x y a b
-  - output: CLOSE_GRIPPER # 
+  - output: # The following four is one of the x y a b
+  - output:  # 
   - output:  # Unused button
   - output:   # Unused button
-  - output: SWING_LEFT
-  - output: SWING_RIGHT
+  - output: OPEN_GRIPPER 
+  - output: CLOSE_GRIPPER 
   - output: ''  # Unused button
   - output: ''  # Unused button
   - output: RESET  #  XBox button

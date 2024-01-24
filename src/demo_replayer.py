@@ -37,7 +37,7 @@ class ArmReplayer:
     
             self.msg.append(temp)
 
-        print(len(self.msg))
+        print((self.msg))
         return self.msg
     
     def replay_via_joint_state(self, msg = None):
@@ -143,34 +143,34 @@ class ArmReplayer:
 if __name__ == '__main__':
     rospy.init_node('arm_replayer', anonymous=True)
     #folder = input('Please input the folder name: ')
-    folder = "user5"
+    folder = "user2"
 
     replayer = ArmReplayer(folder)
     #bag = input('Please input the bag number: ')
     bag = 0
     replayer.read_bag(bag)
 
-    poses = replayer.out_put_positions()
-    replayer.write_poses_to_file(poses)
-    print(poses)
+    # poses = replayer.out_put_positions()
+    # replayer.write_poses_to_file(poses)
+    # print(poses)
 
+
+    # # now = time.time()
+    # # replayer.replay_via_joint_state_with_speed()
+    # # print(time.time() - now)
+
+
+    # # now = time.time()
+    # # replayer.replay_via_joint_state_with_gripper()
+    # # print(time.time() - now)
+
+    # # now = time.time()
+    # # replayer.replay_via_joint_state()
+    # # print(time.time() - now)
 
     # now = time.time()
-    # replayer.replay_via_joint_state_with_speed()
+    # replayer.replay_with_progress_collect()
     # print(time.time() - now)
-
-
-    # now = time.time()
-    # replayer.replay_via_joint_state_with_gripper()
-    # print(time.time() - now)
-
-    # now = time.time()
-    # replayer.replay_via_joint_state()
-    # print(time.time() - now)
-
-    now = time.time()
-    replayer.replay_with_progress_collect(auto=False)
-    print(time.time() - now)
 
     #replayer.play_trajectory()
     replayer.close_bag()

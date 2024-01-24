@@ -137,7 +137,7 @@ class ArmRecorder:
 
 
     def close_bag(self):
-        time.sleep(1)
+        time.sleep(3)
         self.bag.close()
         rospy.loginfo("Bag file saved.")
 
@@ -145,7 +145,7 @@ if __name__ == '__main__':
     rospy.init_node('arm_recorder', anonymous=True, disable_signals=True)
     rospy.Rate(30)  # This rate is not used for recording, only for rospy spin 
     #folder = input('Please input the folder name: ')
-    folder = "user6"
+    folder = "user_test"
     
     recorder = ArmRecorder(folder)
     recorder.record_video_frame()
