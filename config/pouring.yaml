@@ -10,16 +10,16 @@ axes:
     scale: 1.0
   - deadzone: 0.1      #4
     output:  AXIS_Y # Right joystick horizontal - linear movement along X-axis
-    scale: 1.0
+    scale: -1.0
   - deadzone: 0.1     #5
     output:  AXIS_X # Right joystick vertical - linear movement along Y-axis
-    scale: 1.0
+    scale: -1.0
   - deadzone: 0.1   #6
     output: # Right button front
     scale: 1.0
   - deadzone: 0.0 # direction button horizontal 
     output: AXIS_YAW # Unused axis
-    scale: 1.0
+    scale: 2.0
   - deadzone: 0.0 # direction button vertical 
     output:  "AXIS_Z"   # Unused axis
     scale: 1.0

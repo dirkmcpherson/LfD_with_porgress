@@ -43,20 +43,20 @@ def check_limit(limit_check):
     while rospy.is_shutdown() is False:
         z = robot.get_eef_pose(quaternion=False)[2]
         height = z
-        if z < limit_check + 0.001:
+        if z < limit_check :
             #print(z, temp)
             if temp - z > 0.001:
                 cartesian_command = TwistCommand()
                 cartesian_vel_publisher.publish(cartesian_command)
                 temp = z
-                time.sleep(1)
+                time.sleep(0.1)
             if z - temp > 0.00:
                 temp = z
-                time.sleep(0.1)
+                time.sleep(0.05)
         else:
             temp = z
             # Continue with your existing logic or do nothing
-            time.sleep(0.1)
+            time.sleep(0.05)
             pass
 
 async def run_teleop(config, status_cb):
@@ -65,7 +65,7 @@ async def run_teleop(config, status_cb):
     plugin, profile = get_teleop_info(config)
     print(plugin, profile)
     sub = AsyncSubscriber("/joy", sensor_msgs.msg.Joy)
-    limit_check = 0.03
+    limit_check = 0.11
     limit_thread = threading.Thread(target=check_limit, args=(limit_check,))
     limit_thread.start()
 

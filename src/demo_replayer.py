@@ -20,6 +20,7 @@ class ArmReplayer:
         self.joint_trajectory = ConstrainedJointAngles()
         self.arm = kortex_arm.Arm()
         self.arm.home_arm()
+        self.arm.open_gripper()
         self.msg = []
 
     def read_bag(self, cnt=None):
@@ -37,7 +38,7 @@ class ArmReplayer:
     
             self.msg.append(temp)
 
-        print((self.msg))
+        # print((self.msg))
         return self.msg
     
     def replay_via_joint_state(self, msg = None):
@@ -65,6 +66,7 @@ class ArmReplayer:
         self.arm.home_arm()
         progresses = []
         scalars = []
+        step = []
         if msg is None:
             msg = self.msg
         for i in range(0,frequency):
@@ -76,11 +78,15 @@ class ArmReplayer:
                 for j in range(int(len(msg)/frequency) * (i + 1), len(msg)):
                     waypoints.append(msg[j].position)
             self.arm.goto_joint_gripper_waypoints(waypoints)
+            step.append(len(waypoints))
             random_number = np.random.rand()
             if auto:
                 pass
             else:
+                print("your replaying step is: ", i)
                 if random_number < 0.5:
+                    
+                    
                     if len(progresses) > 0:
                         print("your last progress is: ", progresses[-1])
             
@@ -95,7 +101,9 @@ class ArmReplayer:
                         print("your last progress is: ", progresses[-1])
                     progress = input('Please input the progress: ')
                     progresses.append(progress)
+        
         print(progresses)
+        print(step)
         #write progresses to file
         if cnt is None:
             cnt = self.cnt
@@ -105,6 +113,10 @@ class ArmReplayer:
             f.close()
         with open(self.path + str(cnt) + "_scalar.txt", 'w') as f:
             for item in scalars:
+                f.write("%s\n" % item)
+            f.close()
+        with open(self.path + str(cnt) + "_step.txt", 'w') as f:
+            for item in step:
                 f.write("%s\n" % item)
             f.close()
         self.cnt += 1
@@ -143,16 +155,17 @@ class ArmReplayer:
 if __name__ == '__main__':
     rospy.init_node('arm_replayer', anonymous=True)
     #folder = input('Please input the folder name: ')
-    folder = "user2"
+    for i in range(26):
+        folder = "user_" + str(i)
 
-    replayer = ArmReplayer(folder)
-    #bag = input('Please input the bag number: ')
-    bag = 0
-    replayer.read_bag(bag)
+        replayer = ArmReplayer(folder)
+        #bag = input('Please input the bag number: ')
+        bag = 0
+        replayer.read_bag(bag)
 
-    # poses = replayer.out_put_positions()
-    # replayer.write_poses_to_file(poses)
-    # print(poses)
+        poses = replayer.out_put_positions()
+        replayer.write_poses_to_file(poses)
+        print(poses)
 
 
     # # now = time.time()
@@ -160,18 +173,18 @@ if __name__ == '__main__':
     # # print(time.time() - now)
 
 
-    # # now = time.time()
-    # # replayer.replay_via_joint_state_with_gripper()
-    # # print(time.time() - now)
+    # now = time.time()
+    # replayer.replay_via_joint_state_with_gripper()
+    # print(time.time() - now)
 
-    # # now = time.time()
-    # # replayer.replay_via_joint_state()
-    # # print(time.time() - now)
+    # now = time.time()
+    # replayer.replay_via_joint_state()
+    # print(time.time() - now)
 
     # now = time.time()
     # replayer.replay_with_progress_collect()
     # print(time.time() - now)
 
     #replayer.play_trajectory()
-    replayer.close_bag()
+        replayer.close_bag()
     #rospy.spin()
