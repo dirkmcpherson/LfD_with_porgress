@@ -155,17 +155,17 @@ class ArmReplayer:
 if __name__ == '__main__':
     rospy.init_node('arm_replayer', anonymous=True)
     #folder = input('Please input the folder name: ')
-    for i in range(26):
-        folder = "user_" + str(i)
+    # for i in range(26):
+    #     folder = "user1_" + str(i)
+    folder = "user_39"
+    replayer = ArmReplayer(folder)
+    #bag = input('Please input the bag number: ')
+    bag = 0
+    replayer.read_bag(bag)
 
-        replayer = ArmReplayer(folder)
-        #bag = input('Please input the bag number: ')
-        bag = 0
-        replayer.read_bag(bag)
-
-        poses = replayer.out_put_positions()
-        replayer.write_poses_to_file(poses)
-        print(poses)
+    # poses = replayer.out_put_positions()
+    # replayer.write_poses_to_file(poses)
+    # print(poses)
 
 
     # # now = time.time()
@@ -181,10 +181,10 @@ if __name__ == '__main__':
     # replayer.replay_via_joint_state()
     # print(time.time() - now)
 
-    # now = time.time()
-    # replayer.replay_with_progress_collect()
-    # print(time.time() - now)
+    now = time.time()
+    replayer.replay_with_progress_collect()
+    print(time.time() - now)
 
     #replayer.play_trajectory()
-        replayer.close_bag()
+    replayer.close_bag()
     #rospy.spin()

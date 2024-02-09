@@ -189,7 +189,7 @@ if __name__ == '__main__':
     rospy.Rate(30)  # This rate is not used for recording, only for rospy spin 
     #folder = input('Please input the folder name: ')
     
-    folder = "user_25"
+    folder = "user_40"
     recorder = ArmRecorder(folder)
     recorder.record_video_frame()
     while not rospy.is_shutdown():
