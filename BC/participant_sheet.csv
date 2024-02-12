@@ -1,0 +1,40 @@
+1422,,1,,,
+1500,1518,2,,3,"progress and scalar are always the same and even if progress goes forward, 'progress' signal offered are keep on going down "
+1541,1557,2,,,
+1305,1323,3,,,
+1324,1336,2,,0,didn't catch the bootle at first place we mannually fixed it
+1345,1404,2,,,
+1020,1039,2,,7,didn't do the rotation in case of bug
+1106,1121,2,,,
+1129,1140,1,,,
+1137,1150,3,,,
+1149,1205,1,drop at middle,drop at middle,
+1205,1219,3,,,
+1220,1230,0,drop at the first time,drop at the first time,
+1240,1255,3,,b'' error,replay exit with error
+1301,1322,2,,,
+1323,1330,1,,,
+1335,1349,3,,,
+1349,1408,1,crashed but not stopped,,
+1409,1429,0,,,reset arm during recording
+1430,1445,0,,,partial trajectory of putting back
+,1502,0,,failed,failed wash this out
+1503,1512,0,failed,,
+1513,1527,0,,,
+1530,1541,0,,,
+1542,1604,1,,,
+1605,1620,1,,,
+1254,1306,2,,,
+1309,1328,3,,,
+1329,1339,2,crush at the middle,,
+1341,1357,0,,,
+1358,1416,0,,,
+1417,1447,0,,,
+1448,1501,3,,,
+1502,1511,2,,,
+1512,1522,1,,,
+1523,1541,1,,not catching the right postion and make the bottle fall at the first place,
+1555,1611,1,,,
+1612,1636,3,,,
+1638,1653,1,,,
+1654,1702,1,,,no reply session

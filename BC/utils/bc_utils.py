@@ -3,6 +3,7 @@ import rosbag
 from sensor_msgs.msg import JointState
 import os
 import torch
+import csv
 
 
 def read_bag(bagdir):
@@ -59,6 +60,18 @@ def read_one_trajectory_to_each_buffer(k ,buffers, message_list):
             action = list(trajectory[j].effort[:6])
             buffer.add_sample(obs,action)
         top = (top + 1) % len(message_list)
+
+def spilt_traj_with_cup_pos_and_read_to_buffer(buffers,message_list,cup_idx_list,cup_idx):
+    top = 0
+    waypoints = []
+    for i in range(len(message_list)):
+        if cup_idx_list[i] == cup_idx:
+            
+        
+    for i in range(len(buffers)):
+
+        
+
     
 
 
@@ -67,3 +80,17 @@ def device():
         return "cuda"
     else:
         print("WARNING: CUDA not available, running on CPU instead!")
+
+def read_cup_index_from_csv(file_path:str):
+    with open(file_path, 'r') as f:
+        cup_index = []
+        reader = csv.reader(f)
+        cup_index = [int(row[2]) for row in reader]
+    return cup_index
+
+if __name__ == "__main__":
+    cup_idx = read_cup_index_from_csv("/home/hang/catkin_ws/src/ldf_with_progress/BC/participant_sheet.csv")
+    print(cup_idx)
+
+
+
