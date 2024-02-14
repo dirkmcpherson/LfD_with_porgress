@@ -144,12 +144,14 @@ class BCND_Trainer():
         #     policy.eval()
         buffer:SimpleReplayBuffer = self.buffers[0]
         # observations_whole = buffer.observations
-        observations_whole = buffer.random_sample(self.batch_size)["observations"]
+        random_batch = buffer.random_sample(self.batch_size)
+        observations_whole = random_batch["observations"]
+        actions_whole = random_batch["actions"]
         # shift obs to get next obs, leave the last one as 0
         # next_obs = np.concatenate((observations_whole[1:],np.zeros((1,self.obs_dim))),axis=0)
         # next_obs_tensor = torch.tensor(next_obs).to(DEVICE)
         # actions_whole = buffer.actions
-        actions_whole = buffer.random_sample(self.batch_size)["actions"]
+        # actions_whole = buffer.random_sample(self.batch_size)["actions"]
         observations_whole_tensor = torch.from_numpy(observations_whole).float().to(DEVICE)
         actions_whole_tensor = torch.tensor(actions_whole).to(DEVICE)
         reward_predictions = self.reward(observations_whole_tensor, actions_whole_tensor)

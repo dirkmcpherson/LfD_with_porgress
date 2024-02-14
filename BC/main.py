@@ -1,14 +1,14 @@
 from algorithm import BCND_algorithm
 
 
-iter_num = 5
-obs_dim =6
-action_dim = 6
-batch_size = 1000
-max_buffer_size = 1000000
+iter_num = 20
+obs_dim =9
+action_dim = 3
+batch_size = 200
+max_buffer_size = 100000
 training_horizon = 5000
 learning_rate = 1e-4
-num_networks = 1
+num_networks = 3
 network_config = dict(
     hidden_layer_dimension = 100,
     hidden_layer_numbers = 2

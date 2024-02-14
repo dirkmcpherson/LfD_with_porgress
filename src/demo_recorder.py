@@ -65,7 +65,7 @@ class ArmRecorder:
 
     def reset_recording(self):
         self.stop_recording()
-        self.close_bag()
+        self.close_bag()e
         rospy.sleep(10)
         rospy.loginfo("Re-Record the bag.")
         self.arm.home_arm()
