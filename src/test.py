@@ -48,3 +48,4 @@ while True:
     state = arm.get_joint_angles()
     state = list(state)
 
+    

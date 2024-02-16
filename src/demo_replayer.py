@@ -138,7 +138,9 @@ class ArmReplayer:
 
             temp.position = msg[i].position
             temp.name = msg[i].name
+            print(temp)
             poses.append(self.arm.get_fk(temp))
+            break
 
         return poses
     def close_bag(self):
@@ -164,7 +166,7 @@ if __name__ == '__main__':
         replayer.read_bag(bag)
 
         poses = replayer.out_put_positions()
-        replayer.write_poses_to_file(poses)
+        #replayer.write_poses_to_file(poses)
         print(poses)
 
 

@@ -38,7 +38,8 @@ class BCND_algorithm():
         # spilt_traj_with_cup_pos_and_read_to_buffer(self.trainer.buffers, msgs, cup_idx_list,0)
         txt_list = find_all_txt_files_with_eef()
         msgs = read_txt_to_meaasages(txt_list)
-        split_traj_with_cup_pos_and_read_eef(self.trainer.buffers, msgs, cup_idx_list,0)
+        split_traj_with_cup_pos_and_read_eef(self.trainer.buffers, msgs, cup_idx_list,2)
+        print(self.trainer.buffers[0].size)
 
     def train(self):
         for i in range(self.iteration_num):

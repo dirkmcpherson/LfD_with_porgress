@@ -147,6 +147,8 @@ class BCND_Trainer():
         random_batch = buffer.random_sample(self.batch_size)
         observations_whole = random_batch["observations"]
         actions_whole = random_batch["actions"]
+        random_actions = buffer.random_sample(self.batch_size)["actions"]
+        randoom_actions = torch.tensor(random_actions).to(DEVICE)
         # shift obs to get next obs, leave the last one as 0
         # next_obs = np.concatenate((observations_whole[1:],np.zeros((1,self.obs_dim))),axis=0)
         # next_obs_tensor = torch.tensor(next_obs).to(DEVICE)
@@ -155,6 +157,7 @@ class BCND_Trainer():
         observations_whole_tensor = torch.from_numpy(observations_whole).float().to(DEVICE)
         actions_whole_tensor = torch.tensor(actions_whole).to(DEVICE)
         reward_predictions = self.reward(observations_whole_tensor, actions_whole_tensor)
+        random_action_reward = self.reward(observations_whole_tensor, random_actions)
         # print("reward_predictions:{}\n".format(reward_predictions))
         # print("next_obs_tensor:{}\n".format(next_obs_tensor))
         # loss:torch.Tensor = creterion(reward_predictions,next_obs_tensor)
@@ -163,7 +166,9 @@ class BCND_Trainer():
         # loss_avg = loss_avg.item()
         # print("average MSE loss over one trajectory:{}\n".format(loss_avg))
         reward = reward_predictions.mean().detach().cpu().numpy()
+        random_acrtion_reward = random_action_reward.mean().detach().cpu().numpy()
         print("reward:{}\n".format(reward))
+        print("reward for random actions:{}\n".format(random_acrtion_reward))
 
 
 

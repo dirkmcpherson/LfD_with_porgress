@@ -93,19 +93,19 @@ def read_one_trajectory_to_each_buffer(k ,buffers, message_list):
             buffer.add_sample(obs,action)
         top = (top + 1) % len(message_list)
 
-def spilt_traj_with_cup_pos_and_read_to_buffer(buffers,message_list,cup_idx_list,cup_idx):
+def spilt_traj_with_cup_pos_and_read_to_buffer(buffer,message_list,cup_idx_list,cup_idx):
     top = 0
     waypoints = []
     action_list = []
     for i in range(len(message_list)):
         prev_joint_pos = message_list[i][0].position[:7]
         if cup_idx_list[i] == cup_idx:
-            print("got it!\n")
             waypoints += [point for point in message_list[i]]
             for j in range(len(message_list[i])-1):
-                action_list.append([message_list[i][j+1].position[k]-message_list[i][j].position[k] for k in range(7)])
+                # action_list.append([message_list[i][j+1].position[k]-message_list[i][j].position[k] for k in range(7)])
+                action_list.append(list(message_list[i][j+1].position[:7]))
             # final pos have 0 as action
-            action_list.append([0,0,0,0,0,0,0])
+            action_list.append(list(message_list[i][-1].position[:7]))
     waypoint_idx = list(range(len(waypoints)))
     random.shuffle(waypoint_idx)
     # shuffle waypoints and action_list
@@ -124,46 +124,37 @@ def spilt_traj_with_cup_pos_and_read_to_buffer(buffers,message_list,cup_idx_list
     #         top += 1
     # random.shuffle(waypoints)
     
-    print("each buffer has {} waypoints".format(len(waypoints)//len(buffers)))
-    num_split = len(waypoints) // len(buffers)
-    for i in range(len(buffers)):
-        buffer = buffers[i]
-        for j in range(num_split):
-            obs = list(waypoints[top].position[:7])+cup_pos[cup_idx] + icecream_pos
-            # print(obs)
-            # action = list(waypoints[top].effort[:6])
-            action = action_list[top]
-            buffer.add_sample(obs,action)
-            top += 1
+    for i in range(len(waypoints)):
+        obs = list(waypoints[i].position[:7])
+        action = action_list[i]
+        print(action)
+        buffer.add_sample(obs,action)
 
-def split_traj_with_cup_pos_and_read_eef(buffers,message_list,cup_idx_list,cup_idx):
+
+def split_traj_with_cup_pos_and_read_eef(buffer,message_list,cup_idx_list,cup_idx):
     obs_list = []
     action_list = []
     for i in range(len(message_list)):
         if cup_idx_list[i] == cup_idx:
             for j in range(len(message_list[i])-1):
                 eef_pos = message_list[i][j]
-                obs = list(eef_pos)+cup_pos[cup_idx] + icecream_pos
+                # obs = list(eef_pos)+cup_pos[cup_idx] + icecream_pos
+                obs = list(eef_pos)
                 # action = [message_list[i][j+1][k]-eef_pos[k] for k in range(3)]
                 action = message_list[i][j+1]
                 obs_list.append(obs)
                 action_list.append(action) 
             eef_pos = message_list[i][-1]
-            obs = eef_pos+cup_pos[cup_idx] + icecream_pos
+            # obs = eef_pos+cup_pos[cup_idx] + icecream_pos
+            obs = eef_pos
             # action = [0,0,0]
             action = eef_pos
     index = list(range(len(obs_list))) 
     random.shuffle(index)
     obs_list = [obs_list[i] for i in index]
     action_list = [action_list[i] for i in index]
-    num_split = len(obs_list) // len(buffers)
-    for i in range(len(buffers)):
-        buffer = buffers[i]
-        for j in range(num_split):
-            obs = obs_list[i*num_split+j]
-            # print(obs)
-            action = action_list[i*num_split+j]
-            buffer.add_sample(obs,action)
+    for i in range(len(obs_list)):
+        buffer.add_sample(obs_list[i],action_list[i])
         
 
 

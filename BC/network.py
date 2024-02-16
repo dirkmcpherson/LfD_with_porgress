@@ -31,6 +31,7 @@ class BCND_network(nn.Module):
                 nn.init.xavier_uniform_(m.weight)
         nn.init.xavier_uniform_(self.mean.weight)
         nn.init.xavier_uniform_(self.long_std.weight)
+        self.train()
 
     def forward(self, data:torch.Tensor):
         # make a batch if data is a single vector
