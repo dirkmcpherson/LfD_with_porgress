@@ -13,6 +13,8 @@ import study_runner.frames.loggers
 from teleop_lib.gui.teleop_config_frame import TeleopConfigFrame, get_teleop_info
 from study_runner.frames.loggers.rosbag_recorder import get_rosbag_recorder
 import tkinter
+import yaml
+import os
 
 class RemoteStart:
     def __init__(self, log_dir, topic):
@@ -68,8 +70,36 @@ def main():
     print("init")
     root = tkinter.Tk()
     print("got tk")
-    runner = study_runner.StudyRunner(root, run_teleop, initial_config_file=args.config_file)
+
+        # Define initial configurations
+    default_config = {
+        'teleop': {
+            'plugin': 'gen3_lite'
+        }
+    }
+        # Load the control mode from the YAML file
+    mode_file_path = '/home/j/workspace/LfD_with_porgress/config/js.yaml'
+    try:
+        with open(mode_file_path, 'r') as f:
+            mode_data = yaml.safe_load(f)
+    except Exception as e:
+        print(f"Error loading mode file: {e}")
+        mode_data = {}
+    else:
+        # Add 'filename' key to mode_data
+        mode_data['filename'] = os.path.basename(mode_file_path)
+
+        # Include the mode in the default configuration
+        default_config['teleop']['modes'] = [mode_data]
+
+
+    # Initialize the runner with initial configurations
+    # runner = study_runner.StudyRunner(
+    #     root, run_teleop, initial_config_file=initial_config
+    # )
     print("build basic runner")
+    runner = study_runner.StudyRunner(root, run_teleop, initial_config_file=mode_file_path, default_config = default_config)
+    print("built basic runner")
     runner.add_config_frame(TeleopConfigFrame, "Teleoperation")
     logging_frame = runner.add_config_frame(LoggingFrame, "Logging")
     # bagrecorder = get_rosbag_recorder()
