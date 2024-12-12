@@ -45,16 +45,15 @@ class AsyncSubscriber:
 
 async def run_teleop(config, status_cb):
     plugin, profile = get_teleop_info(config)
-    print(f'{plugin=}, {profile=}, {config=}')
     sub = AsyncSubscriber("/joy", sensor_msgs.msg.Joy)
     # uid_pub = rospy.Publisher('/uid_data_dir', String, latch=True, queue_size=1)
     with RunLogging(config):
         # uid_pub.publish(config['logging']['data_dir'])
         try:
+            print(f'{plugin=}, {profile=}, {config=}')
             while not rospy.is_shutdown():
                 msg = await sub.get()
                 cmd = profile.process_input(msg)
-                print(cmd)
                 plugin.do_command(cmd)
         finally:
             # uid_pub.publish('')
