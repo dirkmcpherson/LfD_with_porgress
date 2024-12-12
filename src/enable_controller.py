@@ -76,7 +76,8 @@ async def run_teleop(config, status_cb):
                 msg = await sub.get()
                 #print("got msg:  " , msg)
                 cmd = profile.process_input(msg)
-                plugin.do_command(cmd, limit_check, height)
+                #plugin.do_command(cmd, limit_check, height)
+                plugin.do_command(cmd)
         finally:
             sub.close()
 
