@@ -1,0 +1,62 @@
+
+teleop:
+  filename: js.yaml
+axes:
+  - deadzone: 0.0
+    output: AXIS_Y
+    scale: 1.0
+  - deadzone: 0.0
+    output: AXIS_X
+    scale: 1.0
+  - deadzone: 0.0
+    output: null
+    scale: 1.0
+  - deadzone: 0.05
+    output: AXIS_PITCH
+    scale: -1.0
+  - deadzone: 0.1
+    output: AXIS_ROLL
+    scale: -1.0
+  - deadzone: 0.1
+    output: null
+    scale: 1.0
+  - deadzone: 0.0
+    output: AXIS_YAW
+    scale: 2.0
+  - deadzone: 0.0
+    output: AXIS_Z
+    scale: 1.0
+buttons:
+  - output: null
+  - output: null
+  - output: null
+  - output: null
+  - output: OPEN_GRIPPER
+  - output: CLOSE_GRIPPER
+  - output: OPEN_GRIPPER
+  - output: CLOSE_GRIPPER
+  - output: GO_HOME_COMMAND
+  - output: null
+  - output: null
+logging:
+  added_loggers:
+  - rosbag
+  auto: true
+  rosbag:
+    enabled: true
+    topics:
+    - /cam_dev_video0
+    - /cam_dev_video1
+    - /cam_dev_video2
+    - /cam_dev_video3
+    - /cam_dev_video4
+    - /cam_dev_video5
+    - /joy
+    - /my_gen3_lite/in/cartesian_velocity
+    - /my_gen3_lite/base_feedback
+    - /my_gen3_lite/base_feedback/joint_state
+    - /my_gen3_lite/joint_states
+    - /reward
+    - /success
+    - /tf
+plugin: gen3_lite
