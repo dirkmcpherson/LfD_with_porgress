@@ -59,5 +59,6 @@
             - /my_gen3_lite/joint_states
             - /reward
             - /success
+            - /tf
       plugin: gen3_lite
   plugin: gen3_lite
