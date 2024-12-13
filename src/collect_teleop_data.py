@@ -6,6 +6,8 @@ import rospy
 
 import sensor_msgs.msg
 from std_msgs.msg import String
+from geometry_msgs.msg import Twist
+from kortex_driver.msg import BaseCyclic_Feedback
 
 import study_runner
 from study_runner.frames.logging import LoggingFrame, RunLogging
@@ -15,6 +17,7 @@ from study_runner.frames.loggers.rosbag_recorder import get_rosbag_recorder
 import tkinter
 import yaml
 import os
+import time
 
 class RemoteStart:
     def __init__(self, log_dir, topic):
@@ -44,17 +47,26 @@ class AsyncSubscriber:
         self._subscriber.unregister()
 
 async def run_teleop(config, status_cb):
+
     plugin, profile = get_teleop_info(config)
-    sub = AsyncSubscriber("/joy", sensor_msgs.msg.Joy)
+    sub = AsyncSubscriber("/joy", sensor_msgs.msg.Joy, queue_size=1)
+    state_sub = AsyncSubscriber("/my_gen3_lite/base_feedback", BaseCyclic_Feedback, queue_size=1)
     # uid_pub = rospy.Publisher('/uid_data_dir', String, latch=True, queue_size=1)
     with RunLogging(config):
         # uid_pub.publish(config['logging']['data_dir'])
         try:
-            print(f'{plugin=}, {profile=}, {config=}')
+            # print(f'{plugin=}, {profile=}, {config=}')
+            t0 = time.time(); loops = 0
+            print(f"Starting loop")
             while not rospy.is_shutdown():
                 msg = await sub.get()
+                baseCyclic_Feedback = await state_sub.get()
                 cmd = profile.process_input(msg)
-                plugin.do_command(cmd)
+                plugin.do_command(cmd, current_state=baseCyclic_Feedback)
+
+                loops +=1 
+                if loops % 100 == 0: print(f"Heartbeat running at {1 / ((time.time() - t0) / loops):1.2f} HZ"); loops = 0; t0 = time.time()
+
         finally:
             # uid_pub.publish('')
             sub.close()
@@ -73,7 +85,7 @@ def main():
         # Define initial configurations
     default_config = {
         'teleop': {
-            'plugin': 'gen3_lite'
+            'plugin': 'gen3_lite',
         }
     }
         # Load the control mode from the YAML file
@@ -90,7 +102,9 @@ def main():
 
         # Include the mode in the default configuration
         default_config['teleop']['modes'] = [mode_data]
-
+        default_config['teleop']['plugin_args'] = mode_data['plugin_args'] if 'plugin_args' in mode_data else {}
+        for k,v in default_config.items():
+            print(f"\tLfD: {k} {v}")
 
     # Initialize the runner with initial configurations
     # runner = study_runner.StudyRunner(

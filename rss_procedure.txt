@@ -1,0 +1,10 @@
+1. Reset the robot using the hardcoded script in gazebo_rl/reset/reset_rss.py
+2. Move the can to the starting spot
+3. Read the script to the participant
+4. Allow the participant to practice moving the arm around (how do we do this without making a bag?)
+        if we need to make a bag to allow them to operate the robot, we have to mark the number so we know to delete it, this is no big deal but requires attention from the data collector (or manually checking the backs afterward)
+5. Mark practice bag.
+6. Start trial
+7. End trial when failed or when arm has succesffully slid can. 
+8. Stop trial
+9. Repeat procedure
