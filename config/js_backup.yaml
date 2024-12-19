@@ -59,4 +59,5 @@ logging:
     - /reward
     - /success
     - /tf
+    - /task_phase
 plugin: gen3_lite

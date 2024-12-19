@@ -43,10 +43,10 @@ plugin_args:
 axes:
   - deadzone: 0.0
     output: AXIS_Y
-    scale: 0.7
+    scale: 0.5
   - deadzone: 0.0
     output: AXIS_X
-    scale: 0.7
+    scale: 0.5
   - deadzone: 0.0
     output: null
     scale: 1.0
@@ -55,7 +55,7 @@ axes:
     scale: 1.0
   - deadzone: 0.1
     output: AXIS_Z
-    scale: 0.5
+    scale: 0.4
   - deadzone: 0.1
     output: null
     scale: 1.0
@@ -84,12 +84,12 @@ logging:
   rosbag:
     enabled: true
     topics:
-    - /cam_dev_video0
-    - /cam_dev_video1
-    - /cam_dev_video2
-    - /cam_dev_video3
-    - /cam_dev_video4
-    - /cam_dev_video5
+    - /camera_obs__dev_video0_96x96
+    - /camera_obs__dev_video1_96x96
+    - /camera_obs__dev_video2_96x96
+    - /camera_obs__dev_video3_96x96
+    - /camera_obs__dev_video4_96x96
+    - /camera_obs__dev_video5_96x96
     - /joy
     - /my_gen3_lite/in/cartesian_velocity
     - /my_gen3_lite/base_feedback

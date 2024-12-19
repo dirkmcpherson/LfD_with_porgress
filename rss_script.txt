@@ -2,5 +2,5 @@ Hi there, happy exam period.
 
 Today you're going to control a robot arm to move a can onto a shelf, and slide it into place. We want you to place the can directly next to the can that's already on the shelf. Do you see the can on the shel? (wait) Do you see the can on the table? (wait). 
 
-In order to put the can on the table directly against the can on the shelf, you'll have to put the can down near the one on the shelf, and then slide it over from the far side using the outside of the gripper. Does that make sense? Do you have an questions? Go for it. 
+In order to put the can on the table directly against the can on the shelf, you'll have to put the can down near the one on the shelf, and then slide it over from the far side using the outside of the gripper. Does that make sense? Do you have an questions? Go for it. You want the can you pick up to be *touching* the can on the shelf.
 

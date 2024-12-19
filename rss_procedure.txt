@@ -1,3 +1,29 @@
+Computer setup
+
+## cameras, you must find the two cameras that launch. Look at the terminal messages for info about camera ports
+rosrun gazebo_rl camera.py #
+rosrun gazebo_rl camera.py #
+
+# input from xbox
+rosrun joy joy_node
+
+# kortex launch file
+roslaunch kortex_driver kortex_driver.launch arm:=gen3_lite
+
+# Study UI and bag saver
+python collect_teleop_data.py 
+
+#Bring up phase detection
+python /home/j/catkin_ws/src/gazebo_rl/src/observation_publishers/task_phase_publisher.py
+
+# Reset the robot
+python /home/j/catkin_ws/src/gazebo_rl/src/gazebo_rl/reset/reset_rss.py
+
+
+
+###########################################################################
+
+## Study procedure
 1. Reset the robot using the hardcoded script in gazebo_rl/reset/reset_rss.py
 2. Move the can to the starting spot
 3. Read the script to the participant
